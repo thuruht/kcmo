@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signature and Mark Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .color-picker {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .color-option.selected {
+            border: 2px solid #000;
+        }
+
+        canvas {
+            background-color: #eaeaea;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: block;
+            margin: 10px 0;
+            cursor: crosshair;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .marks-display {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .mark {
+            display: inline-block;
+            margin: 10px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .mark img {
+            max-width: 100px;
+            height: auto;
+        }
+
+        .material-icons {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sign or Mark Your Support</h1>
+        <div class="form-group">
+            <label for="signature">Name</label>
+            <input type="text" id="signature" name="signature" placeholder="Type your name" required maxlength="120" pattern="[\p{L}\p{N} \-@.,'&]*" title="Allowed: letters, numbers, spaces, and symbols (@ . , ' & -)">
+        </div>
+        <div class="form-group">
+            <label>Choose Your Ink Color</label>
+            <div class="color-picker" id="colorPicker">
+                <div class="color-option" style="background-color: black;" data-color="#000000"></div>
+                <div class="color-option" style="background-color: red;" data-color="#FF0000"></div>
+                <div class="color-option" style="background-color: green;" data-color="#008000"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="canvas">Draw Your Mark</label>
+            <canvas id="canvas" width="256" height="80"></canvas>
+            <button type="button" id="clearCanvas"><span class="material-icons">delete</span> Clear Canvas</button>
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="checkbox" id="agreement" name="agreement" required> I support the objectives and am ready to submit my signature/mark/name.
+            </label>
+        </div>
+        <button type="submit" id="submit"><span class="material-icons">send</span> Submit</button>
+        <div class="marks-display" id="marksDisplay">
+            <h2>Recent Marks</h2>
+            <div id="submissionCounter"></div>
+            <div id="marksContainer" style="max-height: 300px; overflow-y: auto;"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            const clearCanvasButton = document.getElementById('clearCanvas');
+            const submitButton = document.getElementById('submit');
+            const marksContainer = document.getElementById('marksContainer');
+            const submissionCounter = document.getElementById('submissionCounter');
+            const colorPicker = document.getElementById('colorPicker');
+            const form = document.getElementById('submissionForm');
+
+            let drawing = false;
+            let lastX = 0;
+            let lastY = 0;
+            let currentColor = '#000000';
+
+            colorPicker.addEventListener('click', (e) => {
+                if (e.target.classList.contains('color-option')) {
+                    document.querySelectorAll('.color-option').forEach(option => option.classList.remove('selected'));
+                    e.target.classList.add('selected');
+                    currentColor = e.target.getAttribute('data-color');
+                    ctx.strokeStyle = currentColor;
+                }
+            });
+
+            canvas.addEventListener('mousedown', (event) => {
+                drawing = true;
+                [lastX, lastY] = [event.offsetX, event.offsetY];
+            });
+
+            canvas.addEventListener('mouseup', () => drawing = false);
+            canvas.addEventListener('mousemove', draw);
+
+            function draw(event) {
+                if (!drawing) return;
+                ctx.lineWidth = 2;
+                ctx.lineCap = 'round';
+
+                ctx.beginPath();
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(event.offsetX, event.offsetY);
+                ctx.stroke();
+
+                [lastX, lastY] = [event.offsetX, event.offsetY];
+            }
+
+            canvas.addEventListener('touchstart', (event) => {
+                drawing = true;
+                const touch = event.touches[0];
+                [lastX, lastY] = [touch.offsetX, touch.offsetY];
+            });
+
+            canvas.addEventListener('touchend', () => drawing = false);
+            canvas.addEventListener('touchmove', (event) => {
+                if (!drawing) return;
+                const touch = event.touches[0];
+                ctx.lineWidth = 2;
+                ctx.lineCap = 'round';
+
+                ctx.beginPath();
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(touch.offsetX, touch.offsetY);
+                ctx.stroke();
+
+                [lastX, lastY] = [touch.offsetX, touch.offsetY];
+            });
+
+            clearCanvasButton.addEventListener('click', () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            });
+
+            submitButton.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const nameInput = document.getElementById('signature').value.trim();
+                const agreement = document.getElementById('agreement').checked;
+                const canvasDataURL = canvas.toDataURL();
+
+                if (!nameInput && canvasDataURL === canvas.toDataURL('image/png', 0)) {
+                    alert('You must provide a name or a mark.');
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append('name', nameInput);
+                formData.append('color', currentColor);
+                formData.append('mark', canvasDataURL);
+                formData.append('agreement', agreement);
+
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    updateGallery(result.submissions, result.counter);
+                } else {
+                    alert('Submission failed!');
+                }
+            });
+
+            async function updateGallery(submissions, counter) {
+                marksContainer.innerHTML = '';
+                submissionCounter.textContent = `Total Submissions: ${counter}`;
+
+                submissions.forEach(submission => {
+                    const markDiv = document.createElement('div');
+                    markDiv.classList.add('mark');
+
+                    const nameText = document.createElement('p');
+                    nameText.textContent = submission.name;
+                    markDiv.appendChild(nameText);
+
+                    const img = document.createElement('img');
+                    img.src = submission.mark;
+                    markDiv.appendChild(img);
+
+                    marksContainer.appendChild(markDiv);
+                });
+            }
+
+            // Initial fetch to populate the gallery
+            async function fetchGallery() {
+                const response = await fetch('/submissions');
+                if (response.ok) {
+                    const result = await response.json();
+                    updateGallery(result.submissions, result.counter);
+                }
+            }
+
+            fetchGallery();
+        });
+    </script>
+</body>
+</html>
