@@ -1,4 +1,4 @@
-import { Env } from './types'; // Assuming you have a separate types file for environment variables
+import { Env } from './worker-configuration';
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
@@ -8,27 +8,27 @@ export default {
       return handleSubmission(request, env);
     } else if (url.pathname === '/gallery') {
       return displayGallery(env);
+    } else if (url.pathname === '/') {
+      return new Response('Welcome to the Signature Worker API. Use /gallery to view submissions.', {
+        headers: { 'Content-Type': 'text/plain' },
+      });
     } else {
       return new Response('Not Found', { status: 404 });
     }
-  }
+  },
 };
 
 async function handleSubmission(request: Request, env: Env): Promise<Response> {
   try {
-    const formData = await request.formData();
+    const formData = await request.json();
 
-    const name = formData.get('name')?.toString() || 'None given';
-    const color = formData.get('color')?.toString() || '#000000';
-    const mark = formData.get('mark')?.toString(); // Base64 encoded image data
-    const agreement = formData.get('agreement') === 'on';
+    const { name = 'None given', color = '#000000', mark = null, agreement } = formData;
 
     if (!agreement) {
-      return new Response('You must agree to the terms.', { status: 400 });
+      return new Response('Agreement is required.', { status: 400 });
     }
 
-    const submissionId = crypto.randomUUID(); // Unique ID for each submission
-
+    const submissionId = crypto.randomUUID();
     const submissionData = {
       id: submissionId,
       name,
@@ -38,15 +38,17 @@ async function handleSubmission(request: Request, env: Env): Promise<Response> {
       timestamp: Date.now()
     };
 
-    // Store submission data in KV
     await env.FORM_DATA_KV.put(submissionId, JSON.stringify(submissionData));
 
-    // Store mark in R2 if provided
     if (mark) {
-      const binaryMark = Uint8Array.from(atob(mark), c => c.charCodeAt(0));
-      await env.R2_BUCKET.put(`${submissionId}.png`, binaryMark, {
-        httpMetadata: { contentType: 'image/png' }
-      });
+      try {
+        const binaryMark = Uint8Array.from(atob(mark.split(",")[1]), c => c.charCodeAt(0));
+        await env.R2_BUCKET.put(`${submissionId}.png`, binaryMark, {
+          httpMetadata: { contentType: 'image/png' },
+        });
+      } catch (e) {
+        return new Response('Invalid mark data.', { status: 400 });
+      }
     }
 
     return new Response(JSON.stringify({ message: 'Submission successful!' }), {
@@ -54,7 +56,6 @@ async function handleSubmission(request: Request, env: Env): Promise<Response> {
       status: 200
     });
   } catch (error) {
-    console.error(error);
     return new Response('Error processing submission.', { status: 500 });
   }
 }
@@ -62,7 +63,6 @@ async function handleSubmission(request: Request, env: Env): Promise<Response> {
 async function displayGallery(env: Env): Promise<Response> {
   try {
     const keys = await env.FORM_DATA_KV.list();
-
     const submissions = await Promise.all(
       keys.keys.map(async key => {
         const data = await env.FORM_DATA_KV.get(key.name);
@@ -72,38 +72,20 @@ async function displayGallery(env: Env): Promise<Response> {
 
     submissions.sort((a, b) => b.timestamp - a.timestamp);
 
-    let galleryHtml = `<html><head><style>
-      .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
-      .submission { border: 1px solid #ccc; padding: 10px; }
-      .submission img { max-width: 100%; height: auto; }
-    </style></head><body>`;
+    const galleryData = {
+      counter: submissions.length,
+      submissions: submissions.map(submission => ({
+        name: submission.name,
+        color: submission.color,
+        mark: submission.mark ? `https://images.kcmo.xyz/${submission.mark}` : null
+      }))
+    };
 
-    galleryHtml += `<h2>Signatories Gallery</h2><div class="gallery">`;
-
-    submissions.forEach((submission, index) => {
-      galleryHtml += `<div class="submission">
-        <p>#${index + 1}</p>
-        <p>Name: ${submission.name}</p>
-        <p>Color: <span style="color: ${submission.color}">${submission.color}</span></p>`;
-
-      if (submission.mark) {
-        const imageUrl = `${env.R2_BUCKET.url}/${submission.mark}`;
-        galleryHtml += `<img src="${imageUrl}" alt="Mark">`;
-      } else {
-        galleryHtml += `<p>No mark provided.</p>`;
-      }
-
-      galleryHtml += `<p>Agreement: ${submission.agreement ? 'Yes' : 'No'}</p></div>`;
-    });
-
-    galleryHtml += '</div></body></html>';
-
-    return new Response(galleryHtml, {
-      headers: { 'Content-Type': 'text/html' },
+    return new Response(JSON.stringify(galleryData), {
+      headers: { 'Content-Type': 'application/json' },
       status: 200
     });
   } catch (error) {
-    console.error(error);
     return new Response('Error retrieving gallery.', { status: 500 });
   }
 }
