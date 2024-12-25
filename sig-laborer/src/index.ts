@@ -34,24 +34,34 @@ async function handleSubmission(request, env) {
 
     const { name = 'None given', mark = null, agreement } = formData;
 
-    if (!agreement) {
+    // Validate required fields
+    if (!agreement || typeof agreement !== 'boolean') {
       return new Response('Agreement is required.', { status: 400 });
     }
 
     const submissionId = crypto.randomUUID();
     const submissionData = {
       id: submissionId,
-      name,
-      color,
+      name: name.trim() || 'Anonymous',
       mark: mark ? `${submissionId}.png` : null,
-      agreement,
+      agreement: !!agreement,
       timestamp: Date.now(),
     };
 
+    // Store submission data in KV
     await env.FORM_DATA_KV.put(submissionId, JSON.stringify(submissionData));
 
+    // Store mark in R2 if provided
     if (mark) {
-      const binaryMark = Uint8Array.from(atob(mark.split(",")[1]), c => c.charCodeAt(0));
+      if (!mark.startsWith('data:image/png;base64,')) {
+        return new Response('Invalid mark format.', { status: 400 });
+      }
+
+      const binaryMark = Uint8Array.from(
+        atob(mark.split(",")[1]),
+        c => c.charCodeAt(0)
+      );
+
       await env.R2_BUCKET.put(`${submissionId}.png`, binaryMark, {
         httpMetadata: { contentType: 'image/png' },
       });
@@ -64,11 +74,10 @@ async function handleSubmission(request, env) {
       },
     });
   } catch (error) {
-    return new Response('Error processing submission.', {
+    console.error('Submission Error:', error);
+    return new Response('Internal Server Error', {
       status: 500,
-      headers: {
-        'Access-Control-Allow-Origin': 'https://kcmo.xyz',
-      },
+      headers: { 'Access-Control-Allow-Origin': 'https://kcmo.xyz' },
     });
   }
 }
@@ -83,6 +92,7 @@ async function displayGallery(env) {
       })
     );
 
+    // Sort submissions by timestamp (most recent first)
     submissions.sort((a, b) => b.timestamp - a.timestamp);
 
     const galleryData = {
@@ -100,11 +110,10 @@ async function displayGallery(env) {
       },
     });
   } catch (error) {
+    console.error('Gallery Error:', error);
     return new Response('Error retrieving gallery.', {
       status: 500,
-      headers: {
-        'Access-Control-Allow-Origin': 'https://kcmo.xyz',
-      },
+      headers: { 'Access-Control-Allow-Origin': 'https://kcmo.xyz' },
     });
   }
 }

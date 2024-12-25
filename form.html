@@ -1,7 +1,6 @@
-<!-- Updated HTML for the signature submission form with dynamic gallery and counter -->
 <div id="submission-container">
   <form id="submission-form" method="POST" action="https://sig-laborer.jojo-829.workers.dev/" enctype="multipart/form-data">
-    <h2>Sign the Manifesto</h2>
+    <h2>Add your Signature</h2>
 
     <!-- Name input -->
     <label for="name">Your Name (optional):</label>
@@ -24,7 +23,7 @@
     </div>
 
     <!-- Canvas for signature/drawing -->
-    <label for="mark">Your Mark (optional):</label>
+    <label for="mark">Your Mark/Signature (optional):</label>
     <canvas id="signature-canvas" width="300" height="150" style="border: 1px solid #ccc;"></canvas>
     <input type="hidden" id="mark" name="mark">
     <button type="button" id="clear-canvas">Clear</button>
@@ -32,7 +31,7 @@
     <!-- Agreement checkbox -->
     <label for="agreement">
       <input type="checkbox" id="agreement" name="agreement" required>
-      I support the manifesto and its principles.
+      I second the demands, and support the objectives of this document.
     </label>
 
     <!-- Submit button -->
@@ -40,7 +39,7 @@
   </form>
 
   <div id="gallery-container">
-    <h2>Total Submissions: <span id="submission-counter">0</span></h2>
+    <h2>Total Signatures: <span id="submission-counter">0</span></h2>
     <div id="gallery" style="max-height: 300px; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;"></div>
   </div>
 </div>
@@ -62,6 +61,15 @@
   canvas {
     display: block;
     margin-bottom: 10px;
+  }
+  .submission {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+  .submission img {
+    max-width: 100%;
+    height: auto;
   }
 </style>
 
@@ -126,17 +134,17 @@
   document.getElementById('submission-form').addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const name = document.getElementById('name').value || 'None given';
+    const name = document.getElementById('name').value.trim() || 'Anonymous';
     const agreement = document.getElementById('agreement').checked;
 
     if (!agreement) {
-      alert('You must agree to submit.');
+      alert('Please check the box to submit.');
       return;
     }
 
     const payload = {
       name,
-      mark: markInput.value || 'data:image/png;base64,PLACEHOLDER_IMAGE_BASE64',
+      mark: markInput.value || null,
       agreement,
     };
 
