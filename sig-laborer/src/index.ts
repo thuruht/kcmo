@@ -32,7 +32,7 @@ async function handleSubmission(request, env) {
   try {
     const formData = await request.json();
 
-    const { name = 'None given', color = '#000000', mark = null, agreement } = formData;
+    const { name = 'None given', mark = null, agreement } = formData;
 
     if (!agreement) {
       return new Response('Agreement is required.', { status: 400 });
@@ -89,7 +89,6 @@ async function displayGallery(env) {
       counter: submissions.length,
       submissions: submissions.map(submission => ({
         name: submission.name,
-        color: submission.color,
         mark: submission.mark ? `https://images.kcmo.xyz/${submission.mark}` : null,
       })),
     };

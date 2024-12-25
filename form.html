@@ -114,7 +114,6 @@
         item.classList.add('submission');
         item.innerHTML = `
           <p>Name: ${submission.name || 'None given'}</p>
-          <p>Color: <span style="color: ${submission.color};">${submission.color}</span></p>
           ${submission.mark ? `<img src="${submission.mark}" alt="Mark">` : '<p>No mark provided.</p>'}
         `;
         galleryContainer.appendChild(item);
@@ -128,7 +127,6 @@
     e.preventDefault();
 
     const name = document.getElementById('name').value || 'None given';
-    const color = document.querySelector('input[name="color"]:checked').value;
     const agreement = document.getElementById('agreement').checked;
 
     if (!agreement) {
@@ -138,7 +136,6 @@
 
     const payload = {
       name,
-      color,
       mark: markInput.value || 'data:image/png;base64,PLACEHOLDER_IMAGE_BASE64',
       agreement,
     };
