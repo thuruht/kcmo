@@ -36,6 +36,17 @@
     justify-content: center;
 }
 
+#signature-canvas
+{
+  border: 1px solid #30FFCF;
+}
+
+#gallery
+{
+  max-height: 300px; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;
+}
+
+
 .container {
     background: #fff;
     padding: 20px;
@@ -91,6 +102,11 @@ input[type="text"] {
     border-color: #000;
 }
 
+#boto
+{
+  display: flex; flex-direction:row;
+}
+
 canvas {
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -99,6 +115,11 @@ canvas {
     cursor: crosshair;
     background-color: #c0c0c0; /* Consistent background */
 }
+
+#red { background-color: #800; }
+#blue { background-color: #008; }
+#green { background-color: #080; }
+#black { background-color: #000; }
 
 button {
     background-color: #007BFF;
@@ -239,53 +260,51 @@ A Non-Violent Wing</h3>
 
 <p>
 Join the Last Letter Brigade for Abolition in Kansas City, Missouri and help us bring real change to a city where lip service and token gestures have often been just a prelude to new and crueler forms of injustice. Your neighbors need your help.
-</p></section><div style="display: flex; flex-direction:row;">
+</p></section><div id="boto">
 <div id="submission-container">
-  <form id="submission-form" method="POST" action="https://sig-laborer.jojo-829.workers.dev/" enctype="multipart/form-data">
+  <form aria-label="signature-submission-form" method="POST" action="https://sig-laborer.jojo-829.workers.dev/" enctype="multipart/form-data">
     <h2>Add your Signature</h2>
 
     <!-- Name input -->
     <label for="name">Your Name (optional):</label>
-    <input type="text" id="name" name="name" placeholder="Enter your name">
+    <input aria-label="Name type="text" id="name" name="name" placeholder="Enter your name">
 
     <!-- Color picker -->
     <label for="color">Choose your ink color:</label>
     <div id="color-picker">
-      <input type="radio" id="color-red" name="color" value="red" checked>
-      <label for="color-red" style="background-color: red;" class="color-swatch"></label>
+      <input type="radio" aria-label="Choose Red" id="color-red" name="color" value="red" checked>
+      <label id="red" for="color-red" class="color-swatch"></label>
 
-      <input type="radio" id="color-blue" name="color" value="blue">
-      <label for="color-blue" style="background-color: blue;" class="color-swatch"></label>
+      <input type="radio" aria-label="Choose Blue" id="color-blue" name="color" value="blue">
+      <label id="blue" for="color-blue" class="color-swatch"></label>
 
-      <input type="radio" id="color-green" name="color" value="green">
-      <label for="color-green" style="background-color: green;" class="color-swatch"></label>
+      <input type="radio" aria-label="Choose Green" id="color-green" name="color" value="green">
+      <label id="green" for="color-green" class="color-swatch"></label>
 
-      <input type="radio" id="color-black" name="color" value="black">
-      <label for="color-black" style="background-color: black;" class="color-swatch"></label>
-    </div>
+      <input type="radio" aria-label="Choose Black" id="color-black" name="color" value="black">    </div>
 
     <!-- Canvas for signature/drawing -->
     <label for="mark">Your Mark/Signature (optional):</label>
-    <canvas id="signature-canvas" width="300" height="150" style="border: 1px solid #ccc;"></canvas>
+    <canvas aria-label="touch or mouse signature input" id="signature-canvas" width="256" height="128"></canvas>
     <input type="hidden" id="mark" name="mark">
-    <button type="button" id="clear-canvas">Clear</button>
+    <button type="button" aria-label="Clear Signature Area" id="clear-canvas">Clear</button>
 
     <!-- Agreement checkbox -->
     <label for="agreement">
-      <input type="checkbox" id="agreement" name="agreement" required>
+      <input type="checkbox" aria-label="Checkbox to signal agreement with or support of the document." id="agreement" name="agreement" required>
       I second the demands, and support the objectives of this document.
     </label>
 
     <!-- Submit button -->
-    <button type="submit">Submit</button>
+    <button type="submit" aris-label="Submit your signature">Submit</button>
   </form>
 
   <div id="gallery-container">
     <h2>Total Signatures: <span id="submission-counter">0</span></h2>
-    <div id="gallery" style="max-height: 300px; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;"></div>
+    <div id="gallery"></div>
   </div>
 </div>
-</div>jojo
+</div>
 
 </div>
 <!-- JavaScript for canvas functionality and gallery update -->
@@ -370,10 +389,10 @@ Join the Last Letter Brigade for Abolition in Kansas City, Missouri and help us 
     });
 
     if (response.ok) {
-      alert('Submission successful!');
+      alert('Submission successful! For *inquiries or *insults, please email (*one of those) *@kcmo.xyz ');
       fetchGallery();
     } else {
-      alert('Error submitting form.');
+      alert('Something went wrong, try again.');
     }
   });
 
