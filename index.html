@@ -20,7 +20,7 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    box-sizing: border-box; /* Ensure consistent padding/margin behavior */
+    box-sizing: border-box;
 }
 
 .page {
@@ -28,24 +28,21 @@
     border: 1px solid rgba(48, 48, 48, 0.3);
     border-radius: 12px;
     box-shadow: -4px 4px 4px rgba(48, 48, 48, 0.3);
-    padding: 16px; /* Adjusted for better spacing */
-    margin: 0 16px; /* Simplified left/right margin */
+    padding: 16px;
+    margin: 0 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-#signature-canvas
-{
+#signature-canvas {
   border: 1px solid #30FFCF;
 }
 
-#gallery
-{
+#gallery {
   max-height: 300px; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;
 }
-
 
 .container {
     background: #fff;
@@ -54,18 +51,14 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 90%;
     max-width: 600px;
-    box-sizing: border-box; /* Ensure proper sizing with padding */
+    box-sizing: border-box;
 }
 
 h1 {
     text-align: center;
     margin-bottom: 20px;
     font-stretch: extra-expanded;
-    line-height: 1.2; /* Ensure consistent line spacing */
-}
-
-.form-group {
-    margin-bottom: 20px;
+    line-height: 1.2;
 }
 
 label {
@@ -83,43 +76,13 @@ input[type="text"] {
     box-sizing: border-box;
 }
 
-.color-picker {
-    display: flex;
-    gap: 10px;
-    margin: 10px 0;
-}
-
-.color-option {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
+.color-swatch {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    border: 1px solid #000;
     cursor: pointer;
-    border: 2px solid transparent;
-    transition: border-color 0.3s;
 }
-
-.color-option.selected {
-    border-color: #000;
-}
-
-#boto
-{
-  display: flex; flex-direction:row;
-}
-
-canvas {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    display: block;
-    margin: 10px 0;
-    cursor: crosshair;
-    background-color: #c0c0c0; /* Consistent background */
-}
-
-#red { background-color: #800; }
-#blue { background-color: #008; }
-#green { background-color: #080; }
-#black { background-color: #000; }
 
 button {
     background-color: #007BFF;
@@ -130,49 +93,10 @@ button {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 5px;
 }
 
 button:hover {
     background-color: #0056b3;
-}
-
-.marks-display {
-    margin-top: 30px;
-    text-align: center;
-}
-
-.mark {
-    display: inline-block;
-    margin: 10px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.mark img {
-    max-width: 100px;
-    height: auto;
-}
-
-.material-icons {
-    font-size: 20px;
-}
-
-#color-picker {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.color-swatch {
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    border: 1px solid #000;
-    cursor: pointer;
 }
 
 .submission {
@@ -187,127 +111,54 @@ button:hover {
     height: auto;
 }
 
-
 </style>
 </head>
-<body><div class="page">
-<h1>The Last Letter Manifesto</h1>
-<section id="part1">
-<h2>Part I - The Letter</h2>
-<p>
-We, the people of Kansas City, Missouri, resolve that not one day longer will we beg for justice or plead for mercy from our oppressors. This being our Last Letter and Demand for Liberation, written by the people of this place to the governments and councils of the city, state, and federal "authorities" — our so-called leaders.
-</p>
-<p>
-This Last Letter to you who would stand forever on our backs is our collective voice, rising in unison to say NO MORE and NEVER AGAIN. Power to the people of Kansas City! Power to the people of Earth! We will rise up now, in solidarity with all who fight against their colonizers, with love for all those who resist their oppressors. These are our demands and the will of the people. This will be our Last Letter. Read it carefully.
-</p>
-<h3>
-We Demand:
-</h3>
-<h4>
-Abolition
-</h4>
-<p>
-The immediate abolition of all police and so-called law enforcement units, prisons, detainment or detention-based facilities or jails, and all other such murder and enslavement for profit schemes and terrorist arms of the state. We will no longer accept the existence of these state-sponsored mechanisms of violence.
-</p>
-<h4>
-Reallocation
-</h4>
-<p>
-The reallocation of such resources as, but not only, the budgets of the abolished entities, to fund in perpetuity programs for community development, mental health services, and crisis response teams, to consist of facilities, training, and any other needs to equip us to care for our fellows.
-</p>
-<h4>
-Community Defense
-</h4>
-<p>
-The equipment, arms, funds, training facilities, and other reparative resources to enable our neighborhoods each and all to defend against incursions by any supremacist, capitalist, or other exploitative organization, sympathizer, collaborator, or bootlicking type scoundrel which would do us violence, and to retain our liberty and safety. The authority to defend our communities rests inherently with the people and requires no validation from the state.
-</p>
-<h4>
-Prosecution
-</h4>
-<p>
-The prosecution of all enforcers, adjudicators, or enablers of state violence who would keep or who actively strive to keep such corrupt and violent schemes and institutions in place for their own profit, and would stand in the way of our demand the 1st of this letter, namely the Abolition Demand. Justice demands accountability for those who stand in the way of abolition and liberation.
-</p>
-<h4>
-Universal Provision
-</h4>
-<p>
-No more will any who wishes to be housed, fed, clothed, treated for medical needs, or supported by the community in time of crisis go without these things, as they are the human rights of all, and the moral obligation of every community to provide one to another, all to each, and each to all. The hoarder and gatekeeper of such resources will vacate such positions or be removed. Their myth of scarcity will be supplanted by the truth of plenty—there is enough for all.
-</p></section>
-<section><p>
-** To those in power: your time is up. The people of Kansas City will no longer tolerate systems that harm us. Embody these changes set forth, or step aside now. You will sleep a lot better at night. **
-</p></section>
-<section id="sig">
-<h3>Signed, we the people, Kansas Citians</h3><p> hoping for a caring and capable future, and <h4>the members of the Last Letter Brigade for Abolition in Kansas City Missouri (LLBA-KCMO)</h4></p>
-</section>
-<div id="sigs"></div>
-<section id="part2">
-<h2>
-Part II - The Brigade -
-</h2>
-<p>
-The Last Letter Brigade for Abolition will be a volunteer brigade, charged with ensuring the demands of the people are met and that communities can build networks and resources to provide for and defend themselves, without harrassment or obstruction. To that end, the Brigade will consist of:
-</p>
-<h3>
-An Armed Defense Wing</h3>
-<p> (LLBA-KCMO:ADW); Ideally comprised of several 7-13 person cohorts, or larger groups when necessary, armed, trained, and available to defend the people and neutralize the violence inherent in the current system with their own capabilities for violence, as it is the only power the pigs understand.
-</p>
-<h3>
-A Non-Violent Wing</h3>
-<p> (LLBA-KCMO:NVW); This wing will focus on supporting existing abolitionist and mutual aid groups, attending protests and actions, and building community resilience without armed engagement, as well as drafting future documents and charters as needed for the direction and use of the Brigade. No more letters though, if you please. ;) This Wing of the Brigade will consist of all who wish to participate.
-</p>
+<body>
+<div class="page">
+  <h1>The Last Letter Manifesto</h1>
 
-<h3>An Invitation to Act</h3>
+  <div id="submission-container">
+    <form id="submission-form" method="POST" action="https://sig-laborer.jojo-829.workers.dev/">
+      <h2>Add your Signature</h2>
 
-<p>
-Join the Last Letter Brigade for Abolition in Kansas City, Missouri and help us bring real change to a city where lip service and token gestures have often been just a prelude to new and crueler forms of injustice. Your neighbors need your help.
-</p></section><div id="boto">
-<div id="submission-container">
-  <form aria-label="signature-submission-form" method="POST" action="https://sig-laborer.jojo-829.workers.dev/" enctype="multipart/form-data">
-    <h2>Add your Signature</h2>
+      <label for="name">Your Name (optional):</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name">
 
-    <!-- Name input -->
-    <label for="name">Your Name (optional):</label>
-    <input aria-label="Name type="text" id="name" name="name" placeholder="Enter your name">
+      <label for="color">Choose your ink color:</label>
+      <div id="color-picker">
+        <input type="radio" id="color-red" name="color" value="red" checked>
+        <label id="red" for="color-red" class="color-swatch"></label>
 
-    <!-- Color picker -->
-    <label for="color">Choose your ink color:</label>
-    <div id="color-picker">
-      <input type="radio" aria-label="Choose Red" id="color-red" name="color" value="red" checked>
-      <label id="red" for="color-red" class="color-swatch"></label>
+        <input type="radio" id="color-blue" name="color" value="blue">
+        <label id="blue" for="color-blue" class="color-swatch"></label>
 
-      <input type="radio" aria-label="Choose Blue" id="color-blue" name="color" value="blue">
-      <label id="blue" for="color-blue" class="color-swatch"></label>
+        <input type="radio" id="color-green" name="color" value="green">
+        <label id="green" for="color-green" class="color-swatch"></label>
 
-      <input type="radio" aria-label="Choose Green" id="color-green" name="color" value="green">
-      <label id="green" for="color-green" class="color-swatch"></label>
+        <input type="radio" id="color-black" name="color" value="black">
+        <label id="black" for="color-black" class="color-swatch"></label>
+      </div>
 
-      <input type="radio" aria-label="Choose Black" id="color-black" name="color" value="black">    </div>
+      <label for="mark">Your Mark/Signature (optional):</label>
+      <canvas id="signature-canvas" width="256" height="128"></canvas>
+      <input type="hidden" id="mark" name="mark">
+      <button type="button" id="clear-canvas">Clear</button>
 
-    <!-- Canvas for signature/drawing -->
-    <label for="mark">Your Mark/Signature (optional):</label>
-    <canvas aria-label="touch or mouse signature input" id="signature-canvas" width="256" height="128"></canvas>
-    <input type="hidden" id="mark" name="mark">
-    <button type="button" aria-label="Clear Signature Area" id="clear-canvas">Clear</button>
+      <label for="agreement">
+        <input type="checkbox" id="agreement" name="agreement" required>
+        I second the demands, and support the objectives of this document.
+      </label>
 
-    <!-- Agreement checkbox -->
-    <label for="agreement">
-      <input type="checkbox" aria-label="Checkbox to signal agreement with or support of the document." id="agreement" name="agreement" required>
-      I second the demands, and support the objectives of this document.
-    </label>
+      <button type="submit">Submit</button>
+    </form>
 
-    <!-- Submit button -->
-    <button type="submit" aris-label="Submit your signature">Submit</button>
-  </form>
-
-  <div id="gallery-container">
-    <h2>Total Signatures: <span id="submission-counter">0</span></h2>
-    <div id="gallery"></div>
+    <div id="gallery-container">
+      <h2>Total Signatures: <span id="submission-counter">0</span></h2>
+      <div id="gallery"></div>
+    </div>
   </div>
 </div>
-</div>
 
-</div>
-<!-- JavaScript for canvas functionality and gallery update -->
 <script>
   const canvas = document.getElementById('signature-canvas');
   const ctx = canvas.getContext('2d');
@@ -323,6 +174,7 @@ Join the Last Letter Brigade for Abolition in Kansas City, Missouri and help us 
     ctx.beginPath();
     markInput.value = canvas.toDataURL('image/png');
   });
+
   canvas.addEventListener('mousemove', draw);
 
   function draw(event) {
@@ -389,18 +241,14 @@ Join the Last Letter Brigade for Abolition in Kansas City, Missouri and help us 
     });
 
     if (response.ok) {
-      alert('Submission successful! For *inquiries or *insults, please email (*one of those) *@kcmo.xyz ');
+      alert('Submission successful! For inquiries or insults, email us.');
       fetchGallery();
     } else {
-      alert('Something went wrong, try again.');
+      alert('Error submitting form.');
     }
   });
 
-  // Load the gallery on page load
   fetchGallery();
 </script>
-
 </body>
-
 </html>
-
