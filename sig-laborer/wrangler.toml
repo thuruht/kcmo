@@ -9,3 +9,7 @@ id = "3ba2510178b74c248d0fe2283f5889c9"
 [[r2_buckets]]
 binding = "R2_BUCKET"
 bucket_name = "mark-images"
+
+[observability.logs]
+enabled = true
+
