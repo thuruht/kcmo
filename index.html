@@ -215,7 +215,8 @@
       const resp = await fetch("https://luge-worker.jojo-829.workers.dev/api/submissions");
       if (resp.ok) {
         const data = await resp.json();
-        updateGallery(data);  // re-use your existing updateGallery() function
+       updateGallery(data.count, data.submissions);
+;  // re-use your existing updateGallery() function
       } else {
         console.error("Failed to load initial gallery. Status:", resp.status);
       }
