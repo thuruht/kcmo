@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Last Letter Manifesto</title>
+    <title>The Last Letter</title>
       <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.5/dist/signature_pad.umd.min.js"></script>
       <link rel="icon" href="./favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,6 +53,12 @@
         touch-action: none; /* Prevent scrolling on touch devices */
       }
       
+      #typedName {
+         background-color:#c0c0c0;
+        border: 1px solid #30303030;
+        width: 512px;
+      }
+      
      #gallery {
     display: flex;           /* turn on flexbox */
     flex-wrap: wrap;         /* wrap to next line if not enough horizontal space */
@@ -77,6 +83,7 @@
     </style>
 </head>
 <body>
+<div class="page"><a href="https://kcmo.xyz/">kcmo.xyz</a></div>
     <div class="page">
         <h1>The Last Letter Manifesto</h1>
         <section id="part1">
@@ -154,19 +161,20 @@
     
             <section id="sign"><h3>Add your Signature</h3>
            <!-- Signature area -->
-    x:<canvas id="signatureCanvas" width="512" height="128"></canvas> <button id="clearBtn">Clear</button>
+    <canvas id="signatureCanvas" width="512" height="128"></canvas><br>
+     <button id="clearBtn">Reset (Erase)</button>
     <br/>
-
+<br>
     <!-- Typed name -->
     <label>
-      Name:
+      <small>Name or Other Identifier:</small><br>
       <input type="text" id="typedName" placeholder="Type your name" />
     </label>
     <br/><br/>
 
     <!-- Mandatory checkbox -->
     <label>
-      <input id="consent" type="checkbox" required /> I second the demands and support the goals of the Last Letter.
+      <input id="consent" type="checkbox" required /> <small>I second the demands and support the goals of the Last Letter.</small>
     </label>
     <br/><br/>
 
