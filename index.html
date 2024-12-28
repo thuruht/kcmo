@@ -208,7 +208,21 @@
         console.error(error);
       }
     });
-
+  // 1) On page load, fetch the submissions
+  window.addEventListener("DOMContentLoaded", async () => {
+    try {
+      // Use your actual Worker domain below:
+      const resp = await fetch("https://luge-worker.jojo-829.workers.dev/api/submissions");
+      if (resp.ok) {
+        const data = await resp.json();
+        updateGallery(data);  // re-use your existing updateGallery() function
+      } else {
+        console.error("Failed to load initial gallery. Status:", resp.status);
+      }
+    } catch (err) {
+      console.error("Error loading initial gallery:", err);
+    }
+  });
     function updateGallery(count, submissions) {
       const gallery = document.getElementById("gallery");
       gallery.innerHTML = `<h2>Total Submissions: ${count}</h2>`;

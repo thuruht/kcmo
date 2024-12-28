@@ -46,7 +46,12 @@ export default {
       const resp = await handleFileRequest(url, env);
       return withCors(resp);
     }
-
+    // 1) NEW route to get all submissions
+    else if (url.pathname === "/api/submissions" && request.method === "GET") {
+      // We'll add a new function handleAllSubmissions
+      const resp = await handleAllSubmissions(env);
+      return withCors(resp);
+    }
     // 3) Fallback — 404 with CORS
     return withCors(new Response("Not Found", { status: 404 }));
   },
@@ -122,5 +127,26 @@ async function handleFileRequest(url, env) {
   // Return the PNG
   return new Response(object.body, {
     headers: { "Content-Type": "image/png" },
+  });
+}
+
+// 2) Add this new function
+async function handleAllSubmissions(env) {
+  // 1) Get the submissionCount from KV
+  const countKey = "submissionCount";
+  let count = parseInt(await env.LUGE_CACHE.get(countKey), 10) || 0;
+
+  // 2) Gather all submissions in an array
+  const submissions = [];
+  for (let i = 1; i <= count; i++) {
+    const raw = await env.LUGE_CACHE.get(`submission:${i}`);
+    if (raw) {
+      submissions.push(JSON.parse(raw));
+    }
+  }
+
+  // 3) Return the same JSON structure as handleSubmit returns
+  return new Response(JSON.stringify({ count, submissions }), {
+    headers: { "Content-Type": "application/json" },
   });
 }
