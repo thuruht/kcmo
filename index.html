@@ -216,6 +216,11 @@
       if (resp.ok) {
         const data = await resp.json();
        updateGallery(data.count, data.submissions);
+         // Clear the form
+  typedName.value = "";
+  consent.checked = false;
+  signaturePad.clear();
+
 ;  // re-use your existing updateGallery() function
       } else {
         console.error("Failed to load initial gallery. Status:", resp.status);
