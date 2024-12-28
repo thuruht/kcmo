@@ -168,60 +168,38 @@
   		  
   <br> <hr> <br>
   
-     <script>
-    const canvas = document.getElementById("signatureCanvas");
-    const signaturePad = new SignaturePad(canvas);
+<script>
+  // 1) Grab your elements at the top
+  const canvas = document.getElementById("signatureCanvas");
+  const signaturePad = new SignaturePad(canvas);
 
-    document.getElementById("clearBtn").addEventListener("click", () => {
-      signaturePad.clear();
-    });
+  // Instead of always re-querying by ID for typedName & consent, let's store them.
+  const nameInput = document.getElementById("typedName");    // NEW
+  const consentBox = document.getElementById("consent");      // NEW
+  const clearBtn = document.getElementById("clearBtn");
+  const submitBtn = document.getElementById("submitBtn");
 
-    document.getElementById("submitBtn").addEventListener("click", async () => {
-      if (!document.getElementById("consent").checked) {
-        alert("You must agree first!");
-        return;
-      }
-      if (signaturePad.isEmpty()) {
-        alert("Please provide a signature first.");
-        return;
-      }
+  // Clear button
+  clearBtn.addEventListener("click", () => {
+    signaturePad.clear();
+  });
 
-      const typedName = document.getElementById("typedName").value || "Anonymous";
-      const signatureDataUrl = signaturePad.toDataURL("image/png");
-
-      try {
-        // POST to your Worker
-        const response = await fetch("https://luge-worker.jojo-829.workers.dev/api/submit", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ typedName, signatureDataUrl }),
-        });
-
-        if (!response.ok) {
-          throw new Error("Submission failed");
-        }
-
-        const { count, submissions } = await response.json();
-        updateGallery(count, submissions);
-      } catch (error) {
-        alert(`Error: ${error.message}`);
-        console.error(error);
-      }
-    });
-  // 1) On page load, fetch the submissions
+  // 2) On page load, check localStorage & fetch existing submissions
   window.addEventListener("DOMContentLoaded", async () => {
+    // --- NEW START ---
+    // If localStorage says "hasSubmitted", disable the form right away
+    const hasSubmitted = localStorage.getItem("hasSubmitted") === "true";
+    if (hasSubmitted) {
+      disableForm();  
+    }
+    // --- NEW END ---
+
     try {
-      // Use your actual Worker domain below:
+      // Fetch existing submissions to populate the gallery
       const resp = await fetch("https://luge-worker.jojo-829.workers.dev/api/submissions");
       if (resp.ok) {
         const data = await resp.json();
-       updateGallery(data.count, data.submissions);
-         // Clear the form
-  typedName.value = "";
-  consent.checked = false;
-  signaturePad.clear();
-
-;  // re-use your existing updateGallery() function
+        updateGallery(data.count, data.submissions);
       } else {
         console.error("Failed to load initial gallery. Status:", resp.status);
       }
@@ -229,20 +207,83 @@
       console.error("Error loading initial gallery:", err);
     }
   });
-    function updateGallery(count, submissions) {
-      const gallery = document.getElementById("gallery");
-      gallery.innerHTML = `<h2>Total Submissions: ${count}</h2>`;
 
-      submissions.forEach((sub) => {
-        const div = document.createElement("div");
-        div.style.margin = "10px 0";
-        div.innerHTML = `
-          <p>Name: ${sub.typedName}</p>
-          <img src="https://luge-worker.jojo-829.workers.dev/api/file?key=${sub.signatureKey}" style="max-width: 200px;" />
-        `;
-        gallery.appendChild(div);
-      });
+  // 3) Submit button logic
+  submitBtn.addEventListener("click", async () => {
+    // Validate
+    if (!consentBox.checked) {
+      alert("You must agree first!");
+      return;
     }
-  </script>
+    if (signaturePad.isEmpty()) {
+      alert("Please provide a signature first.");
+      return;
+    }
+
+    // Grab typedName from the element, not just a string
+    const typedName = nameInput.value || "Anonymous";
+    const signatureDataUrl = signaturePad.toDataURL("image/png");
+
+    try {
+      // POST to your Worker
+      const response = await fetch("https://luge-worker.jojo-829.workers.dev/api/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ typedName, signatureDataUrl }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Submission failed");
+      }
+
+      // Parse response
+      const { count, submissions } = await response.json();
+      updateGallery(count, submissions);
+
+      // Clear the form after successful submission
+      nameInput.value = "";    // was typedName.value before (which wouldn't work)
+      consentBox.checked = false;
+      signaturePad.clear();
+
+      // --- NEW START ---
+      // Mark localStorage so the user cannot submit again from this browser
+      localStorage.setItem("hasSubmitted", "true");
+      disableForm(); 
+      // --- NEW END ---
+
+    } catch (error) {
+      alert(`Error: ${error.message}`);
+      console.error(error);
+    }
+  });
+
+  // 4) The function to update the gallery (unchanged)
+  function updateGallery(count, submissions) {
+    const gallery = document.getElementById("gallery");
+    gallery.innerHTML = `<h2>Total Submissions: ${count}</h2>`;
+
+    submissions.forEach((sub) => {
+      const div = document.createElement("div");
+      div.style.margin = "10px 0";
+      div.innerHTML = `
+        <p>Name: ${sub.typedName}</p>
+        <img src="https://luge-worker.jojo-829.workers.dev/api/file?key=${sub.signatureKey}" style="max-width: 200px;" />
+      `;
+      gallery.appendChild(div);
+    });
+  }
+
+  // --- NEW ---
+  // 5) disableForm() helper
+  function disableForm() {
+    // Disable name input, checkbox, button
+    nameInput.disabled = true;
+    consentBox.disabled = true;
+    submitBtn.disabled = true;
+    // Optionally disable drawing on the canvas
+    canvas.style.pointerEvents = "none";
+  }
+</script>
+
 </body>
 </html>
