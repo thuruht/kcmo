@@ -53,12 +53,24 @@
         touch-action: none; /* Prevent scrolling on touch devices */
       }
       
-      #gallery img {
-        max-width: 200px;
-        border: 1px solid #30303030;
-        margin: 5px;
-      }
-      
+     #gallery {
+    display: flex;           /* turn on flexbox */
+    flex-wrap: wrap;         /* wrap to next line if not enough horizontal space */
+    gap: 1rem;               /* optional space between items */
+  }
+
+  #gallery div {
+    border: 1px solid #30303030;
+    padding: 10px;
+    margin: 0;
+    width: 200px;            /* or max-width: 200px if you like */
+    box-sizing: border-box;  /* so padding + width works as you expect */
+  }
+
+  #gallery img {
+    max-width: 100%; /* so the image fits the container width */
+    height: auto;
+   border: 1px solid #30303030;}
       hr { border-top: 1px solid #30303030;
       
       }
@@ -162,20 +174,37 @@
     <button id="submitBtn">Submit</button>
 
         </section>
-      <h2>Community Signatures</h2>
-    <div id="gallery"></div>
-  		  </div>
-  		  
-  <br> <hr> <br>
-  
+    <!-- Where you had: <h2>Community Signatures</h2>
+     <div id="gallery"></div>
+     </div> 
+     <br><hr><br> 
+     <script> ... </script> -->
+
+<!-- Instead, we do something like this: -->
+<h2>Community Signatures</h2>
+<!-- The heading for total submissions goes here, outside the flex container. -->
+<!-- We'll show the count in a <span> so we can just update the text. -->
+<h3 id="submissionHeading">
+  Total Signatures: <span id="submissionCount"></span>
+</h3>
+<!-- Optional horizontal line -->
+<hr />
+
+<!-- Now the gallery is only for the “cards” (submissions). -->
+<div id="gallery" style="display: flex; flex-wrap: wrap; gap: 1rem;">
+</div>
+</div> <!-- closes the .page div -->
+
+<br><hr><br>
+
 <script>
   // 1) Grab your elements at the top
   const canvas = document.getElementById("signatureCanvas");
   const signaturePad = new SignaturePad(canvas);
 
   // Instead of always re-querying by ID for typedName & consent, let's store them.
-  const nameInput = document.getElementById("typedName");    // NEW
-  const consentBox = document.getElementById("consent");      // NEW
+  const nameInput = document.getElementById("typedName");
+  const consentBox = document.getElementById("consent");
   const clearBtn = document.getElementById("clearBtn");
   const submitBtn = document.getElementById("submitBtn");
 
@@ -186,13 +215,11 @@
 
   // 2) On page load, check localStorage & fetch existing submissions
   window.addEventListener("DOMContentLoaded", async () => {
-    // --- NEW START ---
     // If localStorage says "hasSubmitted", disable the form right away
     const hasSubmitted = localStorage.getItem("hasSubmitted") === "true";
     if (hasSubmitted) {
-      disableForm();  
+      disableForm();
     }
-    // --- NEW END ---
 
     try {
       // Fetch existing submissions to populate the gallery
@@ -241,39 +268,45 @@
       updateGallery(count, submissions);
 
       // Clear the form after successful submission
-      nameInput.value = "";    // was typedName.value before (which wouldn't work)
+      nameInput.value = "";
       consentBox.checked = false;
       signaturePad.clear();
 
-      // --- NEW START ---
       // Mark localStorage so the user cannot submit again from this browser
       localStorage.setItem("hasSubmitted", "true");
-      disableForm(); 
-      // --- NEW END ---
-
+      disableForm();
     } catch (error) {
       alert(`Error: ${error.message}`);
       console.error(error);
     }
   });
 
-  // 4) The function to update the gallery (unchanged)
+  // 4) The function to update the gallery
   function updateGallery(count, submissions) {
-    const gallery = document.getElementById("gallery");
-    gallery.innerHTML = `<h2>Total Submissions: ${count}</h2>`;
+    // Update the total count in the heading
+    document.getElementById("submissionCount").textContent = count;
 
+    // Clear & rebuild the “cards” in the flex container
+    const gallery = document.getElementById("gallery");
+    gallery.innerHTML = ""; // We'll only put the “cards” here
+
+    // For each submission, create a "card"
     submissions.forEach((sub) => {
       const div = document.createElement("div");
-      div.style.margin = "10px 0";
+      div.style.border = "1px solid #ccc";
+      div.style.padding = "10px";
+      div.style.width = "200px";         // optional: fixed width for a grid look
+      div.style.boxSizing = "border-box";
+      // margin or gap can be controlled in the flex container or here
       div.innerHTML = `
         <p>Name: ${sub.typedName}</p>
-        <img src="https://luge-worker.jojo-829.workers.dev/api/file?key=${sub.signatureKey}" style="max-width: 200px;" />
+        <img src="https://luge-worker.jojo-829.workers.dev/api/file?key=${sub.signatureKey}" 
+             style="max-width: 100%;" />
       `;
       gallery.appendChild(div);
     });
   }
 
-  // --- NEW ---
   // 5) disableForm() helper
   function disableForm() {
     // Disable name input, checkbox, button
