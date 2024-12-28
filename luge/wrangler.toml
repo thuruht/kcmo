@@ -1,0 +1,11 @@
+name = "luge-worker"
+main = "src/index.js"
+compatibility_date = "2024-12-27"
+
+[[r2_buckets]]
+binding = "LUGE_BUCKET"
+bucket_name = "luge-bucket"
+
+[[kv_namespaces]]
+binding = "LUGE_CACHE"
+id = "4e3f1d8161f145318f6a602fe0ddb85b"

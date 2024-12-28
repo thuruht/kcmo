@@ -1,9 +1,0 @@
-/home/jelif/kcmo/sig-laborer/node_modules
-/home/jelif/kcmo/sig-laborer/src
-/home/jelif/kcmo/sig-laborer/test
-/home/jelif/kcmo/sig-laborer/package.json
-/home/jelif/kcmo/sig-laborer/package-lock.json
-/home/jelif/kcmo/sig-laborer/tsconfig.json
-/home/jelif/kcmo/sig-laborer/vitest.config.mts
-/home/jelif/kcmo/sig-laborer/worker-configuration.d.ts
-/home/jelif/kcmo/sig-laborer/wrangler.toml

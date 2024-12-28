@@ -3,252 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Last Letter Manifesto</title>
-<link rel="icon" href="https://kcmo.xyz/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<style>
-   body {
-    font-family: 'Noto Sans Mono', monospace;
-    margin: 12px;
-    background-color: #c0c0c0;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    box-sizing: border-box;
-}
-
-.page {
-    background-color: #ffc0c0;
-    border: 1px solid rgba(48, 48, 48, 0.3);
-    border-radius: 12px;
-    box-shadow: -4px 4px 4px rgba(48, 48, 48, 0.3);
-    padding: 16px;
-    margin: 0 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-#signature-canvas {
-  border: 1px solid #30FFCF;
-}
-
-#gallery {
-  max-height: 300px; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;
-}
-
-.container {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 600px;
-    box-sizing: border-box;
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-stretch: extra-expanded;
-    line-height: 1.2;
-}
-
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    box-sizing: border-box;
-}
-
-.color-swatch {
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    border: 1px solid #000;
-    cursor: pointer;
-}
-
-button {
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-.submission {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
-    border-radius: 5px;
-}
-
-.submission img {
-    max-width: 100%;
-    height: auto;
-}
-
-</style>
+    <title>The Last Letter Manifesto</title>
+      <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.5/dist/signature_pad.umd.min.js"></script>
+      <link rel="icon" href="./favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans Mono', monospace;
+            margin: 12px;
+            background-color: #c0c0c0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        .page {
+            background-color: #ffc0c0;
+            border: 1px solid #30303030;
+            border-radius: 12px;
+            box-shadow: -4px 4px 4px #30303030;
+            padding: 12px;
+            margin-left: 20px;
+            margin-right: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 94vw;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-stretch: extra-expanded;
+            line-height: normal;
+        }
+ 
+      #signatureCanvas {
+      background-color:#c0c0c0;
+        border: 1px solid #30303030;
+        width: 512px;
+        height: 128px;
+        touch-action: none; /* Prevent scrolling on touch devices */
+      }
+      
+      #gallery img {
+        max-width: 200px;
+        border: 1px solid #30303030;
+        margin: 5px;
+      }
+      
+      hr { border-top: 1px solid #30303030;
+      
+      }
+    </style>
 </head>
 <body>
-<div class="page">
-  <h1>The Last Letter Manifesto</h1>
+    <div class="page">
+        <h1>The Last Letter Manifesto</h1>
+        <section id="part1">
+            <h2>Part I - The Letter</h2>
+            <p>
+                We, the people of Kansas City, Missouri, resolve that not one day longer will we beg for justice or plead for mercy from our oppressors. This being our Last Letter and Demand for Liberation, written by the people of this place to the governments and councils of the city, state, and federal "authorities" — our so-called leaders.
+            </p>
+            <p>
+                This Last Letter to you who would stand forever on our backs is our collective voice, rising in unison to say NO MORE and NEVER AGAIN. Power to the people of Kansas City! Power to the people of Earth! We will rise up now, in solidarity with all who fight against their colonizers, with love for all those who resist their oppressors. These are our demands and the will of the people. This will be our Last Letter. Read it carefully.
+            </p>
+            <h3>We Demand:</h3>
+            <h4>Abolition</h4>
+            <p>
+                The immediate abolition of all police and so-called law enforcement units, prisons, detainment or detention-based facilities or jails, and all other such murder and enslavement for profit schemes and terrorist arms of the state. We will no longer accept the existence of these state-sponsored mechanisms of violence.
+            </p>
+            <h4>Reallocation</h4>
+            <p>
+                The reallocation of such resources as, but not only, the budgets of the abolished entities, to fund in perpetuity programs for community development, mental health services, and crisis response teams, to consist of facilities, training, and any other needs to equip us to care for our fellows.
+            </p>
+            <h4>Community Defense</h4>
+            <p>
+                The equipment, arms, funds, training facilities, and other reparative resources to enable our neighborhoods each and all to defend against incursions by any supremacist, capitalist, or other exploitative organization, sympathizer, collaborator, or bootlicking type scoundrel which would do us violence, and to retain our liberty and safety. The authority to defend our communities rests inherently with the people and requires no validation from the state.
+            </p>
+            <h4>Prosecution</h4>
+            <p>
+                The prosecution of all enforcers, adjudicators, or enablers of state violence who would keep or who actively strive to keep such corrupt and violent schemes and institutions in place for their own profit, and would stand in the way of our demand the 1st of this letter, namely the Abolition Demand. Justice demands accountability for those who stand in the way of abolition and liberation.
+            </p>
+            <h4>Universal Provision</h4>
+            <p>
+                No more will any who wishes to be housed, fed, clothed, treated for medical needs, or supported by the community in time of crisis go without these things, as they are the human rights of all, and the moral obligation of every community to provide one to another, all to each, and each to all. The hoarder and gatekeeper of such resources will vacate such positions or be removed. Their myth of scarcity will be supplanted by the truth of plenty—there is enough for all.
+            </p>
+        </section>
+        <section id="partA">
+            <p>
+                ** To those in power: your time is up. The people of Kansas City will no longer tolerate systems that harm us. Embody these changes set forth, or step aside now. You will sleep a lot better at night. **
+            </p>
+        </section>
+        <section id="sig">
+            <h3>Signed, we the people, Kansas Citians</h3>
+            <p>hoping for a caring and capable future, and</p>
+            <h4>the members of the Last Letter Brigade for Abolition in Kansas City Missouri (LLBA-KCMO)</h4>
+        </section>
+        </div>
+        
+ <br> <hr> <br>
+       
+        <div class="page">
+        
+        
+        <section id="part2">
+            <h2>Part II - The Brigade</h2>
+            <p>
+                The Last Letter Brigade for Abolition will be a volunteer brigade, charged with ensuring the demands of the people are met and that communities can build networks and resources to provide for and defend themselves, without harrassment or obstruction. To that end, the Brigade will consist of:
+            </p>
+            <h3>An Armed Defense Wing</h3>
+            <p>
+                (LLBA-KCMO:ADW); Ideally comprised of several 7-13 person cohorts, or larger groups when necessary, armed, trained, and available to defend the people and neutralize the violence inherent in the current system with their own capabilities for violence, as it is the only power the pigs understand.
+            </p>
+            <h3>A Non-Violent Wing</h3>
+            <p>
+                (LLBA-KCMO:NVW); This wing will focus on supporting existing abolitionist and mutual aid groups, attending protests and actions, and building community resilience without armed engagement, as well as drafting future documents and charters as needed for the direction and use of the Brigade. No more letters though, if you please. ;) This Wing of the Brigade will consist of all who wish to participate.
+            </p>
+            <h3>An Invitation to Act</h3>
+            <p>
+                Join the Last Letter Brigade for Abolition in Kansas City, Missouri and help us bring real change to a city where lip service and token gestures have often been just a prelude to new and crueler forms of injustice. Your neighbors need your help.
+            </p>
+            
+            </section>
+            </div>
+            
+ <br> <hr> <br>
+            
+            <div class="page">
+   
+    
+            <section id="sign"><h3>Add your Signature</h3>
+           <!-- Signature area -->
+    x:<canvas id="signatureCanvas" width="512" height="128"></canvas> <button id="clearBtn">Clear</button>
+    <br/>
 
-  <div id="submission-container">
-    <form id="submission-form" method="POST" action="https://sig-laborer.jojo-829.workers.dev/">
-      <h2>Add your Signature</h2>
+    <!-- Typed name -->
+    <label>
+      Name:
+      <input type="text" id="typedName" placeholder="Type your name" />
+    </label>
+    <br/><br/>
 
-      <label for="name">Your Name (optional):</label>
-      <input type="text" id="name" name="name" placeholder="Enter your name">
+    <!-- Mandatory checkbox -->
+    <label>
+      <input id="consent" type="checkbox" required /> I second the demands and support the goals of the Last Letter.
+    </label>
+    <br/><br/>
 
-      <label for="color">Choose your ink color:</label>
-      <div id="color-picker">
-        <input type="radio" id="color-red" name="color" value="red" checked>
-        <label id="red" for="color-red" class="color-swatch"></label>
+   
+    <button id="submitBtn">Submit</button>
 
-        <input type="radio" id="color-blue" name="color" value="blue">
-        <label id="blue" for="color-blue" class="color-swatch"></label>
-
-        <input type="radio" id="color-green" name="color" value="green">
-        <label id="green" for="color-green" class="color-swatch"></label>
-
-        <input type="radio" id="color-black" name="color" value="black">
-        <label id="black" for="color-black" class="color-swatch"></label>
-      </div>
-
-      <label for="mark">Your Mark/Signature (optional):</label>
-      <canvas id="signature-canvas" width="256" height="128"></canvas>
-      <input type="hidden" id="mark" name="mark">
-      <button type="button" id="clear-canvas">Clear</button>
-
-      <label for="agreement">
-        <input type="checkbox" id="agreement" name="agreement" required>
-        I second the demands, and support the objectives of this document.
-      </label>
-
-      <button type="submit">Submit</button>
-    </form>
-
-    <div id="gallery-container">
-      <h2>Total Signatures: <span id="submission-counter">0</span></h2>
-      <div id="gallery"></div>
-    </div>
-  </div>
-</div>
-
-<script>
-  const canvas = document.getElementById('signature-canvas');
-  const ctx = canvas.getContext('2d');
-  const markInput = document.getElementById('mark');
-  const galleryContainer = document.getElementById('gallery');
-  const submissionCounter = document.getElementById('submission-counter');
-
-  let drawing = false;
-
-  canvas.addEventListener('mousedown', () => drawing = true);
-  canvas.addEventListener('mouseup', () => {
-    drawing = false;
-    ctx.beginPath();
-    markInput.value = canvas.toDataURL('image/png');
-  });
-
-  canvas.addEventListener('mousemove', draw);
-
-  function draw(event) {
-    if (!drawing) return;
-    ctx.lineWidth = 2;
-    ctx.lineCap = 'round';
-    ctx.strokeStyle = document.querySelector('input[name="color"]:checked').value;
-
-    const rect = canvas.getBoundingClientRect();
-    ctx.lineTo(event.clientX - rect.left, event.clientY - rect.top);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(event.clientX - rect.left, event.clientY - rect.top);
-  }
-
-  document.getElementById('clear-canvas').addEventListener('click', () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    markInput.value = '';
-  });
-
-  async function fetchGallery() {
-    try {
-      const response = await fetch('https://sig-laborer.jojo-829.workers.dev/gallery');
-      const data = await response.json();
-
-      submissionCounter.textContent = data.counter;
-      galleryContainer.innerHTML = '';
-
-      data.submissions.forEach(submission => {
-        const item = document.createElement('div');
-        item.classList.add('submission');
-        item.innerHTML = `
-          <p>Name: ${submission.name || 'None given'}</p>
-          ${submission.mark ? `<img src="${submission.mark}" alt="Mark">` : '<p>No mark provided.</p>'}
-        `;
-        galleryContainer.appendChild(item);
+        </section>
+      <h2>Community Signatures</h2>
+    <div id="gallery"></div>
+  		  </div>
+  		  
+  <br> <hr> <br>
+  
+    <script>
+      // Initialize Signature Pad
+      const canvas = document.getElementById('signatureCanvas');
+      const signaturePad = new SignaturePad(canvas, {
+        backgroundColor: 'rgba(255, 255, 255, 0)', // optional
+        penColor: 'black'
       });
-    } catch (error) {
-      console.error('Error fetching gallery:', error);
-    }
-  }
 
-  document.getElementById('submission-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
+      // Clear button
+      document.getElementById('clearBtn').addEventListener('click', function() {
+        signaturePad.clear();
+      });
 
-    const name = document.getElementById('name').value.trim() || 'Anonymous';
-    const agreement = document.getElementById('agreement').checked;
+      // Submit button
+      document.getElementById('submitBtn').addEventListener('click', async function() {
+        const checkbox = document.getElementById('consent');
+        if (!checkbox.checked) {
+          alert("You must agree before submitting!");
+          return;
+        }
 
-    if (!agreement) {
-      alert('Please check the box to submit.');
-      return;
-    }
+        // If the user hasn't drawn anything, you can check signaturePad.isEmpty()
+        if (signaturePad.isEmpty()) {
+          alert("Please provide a signature first.");
+          return;
+        }
 
-    const payload = {
-      name,
-      mark: markInput.value || null,
-      agreement,
-    };
+        // Get signature image as data URL (default: PNG)
+        const signatureDataUrl = signaturePad.toDataURL('image/png');
 
-    const response = await fetch('https://sig-laborer.jojo-829.workers.dev/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
+        // Grab typed name
+        const typedName = document.getElementById('typedName').value;
 
-    if (response.ok) {
-      alert('Submission successful! For inquiries or insults, email us.');
-      fetchGallery();
-    } else {
-      alert('Error submitting form.');
-    }
-  });
+        // Send to Worker
+        try {
+          const response = await fetch("https://luge-worker.jojo-829.workers.dev/api/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              typedName,
+              // It's base64 data, e.g. "data:image/png;base64, iVBOR..."
+              // The Worker can decode and store as binary in R2.
+              signatureDataUrl
+            }),
+          });
 
-  fetchGallery();
-</script>
+          if (!response.ok) {
+            throw new Error("Submission failed.");
+          }
+
+          const { count, submissions } = await response.json();
+          updateGallery({ count, submissions });
+        } catch (err) {
+          console.error(err);
+          alert("Error submitting signature");
+        }
+      });
+
+      function updateGallery({ count, submissions }) {
+        const galleryDiv = document.getElementById("gallery");
+        galleryDiv.innerHTML = "";
+
+        const header = document.createElement("h2");
+        header.textContent = `Total Submissions: ${count}`;
+        galleryDiv.appendChild(header);
+
+        submissions.forEach((sub) => {
+          const container = document.createElement("div");
+          container.style.border = "1px solid #ccc";
+          container.style.padding = "10px";
+          container.style.margin = "10px 0";
+
+          const p = document.createElement("p");
+          p.textContent = `Name: ${sub.typedName}`;
+          container.appendChild(p);
+
+          // We can retrieve from our Worker with /api/file?key=sub.signatureKey
+          // or if we stored it as a publicly accessible link, we use that.
+          const img = document.createElement("img");
+          img.src = `/api/file?key=${sub.signatureKey}`; 
+          container.appendChild(img);
+
+          galleryDiv.appendChild(container);
+        });
+      }
+    </script>
 </body>
 </html>
