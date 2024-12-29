@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
     a {
-
+font-weight: 900;
             text-decoration: none;
 
             color: #7070f0;
@@ -33,7 +33,7 @@
         body {
             font-family: 'Noto Sans Mono', monospace;
             margin: 12px;
-         background-color: #00000F;
+         background-color: #437C33;
           color: #606060;
             display: flex;
             flex-direction: column;
@@ -44,8 +44,8 @@
         
         .page {
             
-                background-color: #0F030C;
-            color: #909990;
+                background-color: #1F0000;
+            color: #969980;
             border: 1px solid #50505090;
             border-radius: 12px;
             box-shadow: 1px -1px 3px #F606F96f, -1px 1px 3px #f606f66f ;
@@ -70,7 +70,7 @@
       #signatureCanvas {
       background-color:#c0c0c0;
         border: 1px solid #30303030;
-        width: 512px;
+        width: 468px;
         height: 128px;
         touch-action: none; /* Prevent scrolling on touch devices */
       }
@@ -78,7 +78,17 @@
       #typedName {
          background-color:#c0c0c0;
         border: 1px solid #30303030;
-        width: 512px;
+        width: 468px;
+      }
+      
+      input {
+         background-color:#c0c0c0;
+        border: 1px solid #30303030;
+      }
+     textarea {
+         background-color:#c0c0c0;
+        border: 1px solid #30303030;
+        width: 468px; height: 128px;
       }
       
      #gallery {
@@ -200,7 +210,7 @@ hr { color: #00ff0033; width: 66%; height: 0px;
     
             <section id="sign"><h3>Add your Signature or Mark</h3>
            <!-- Signature area -->
-    <canvas id="signatureCanvas" width="512" height="128"></canvas><br>
+    <canvas id="signatureCanvas" width="468" height="128"></canvas><br>
      <button id="clearBtn">Reset (Erase)</button>
     <br/>
 <br>
@@ -243,9 +253,28 @@ hr { color: #00ff0033; width: 66%; height: 0px;
 <br><hr><br>
 
 <div class="page" id="contact">
-<h2>Contact:</h2> <p><small>
-To contact the author of this page please use the contact form, or email: </small> <a href="mailto:jojo@kcmo.xyz">jojo@kcmo.xyz</a></p>
-<p><small>I don't claim to own this content, and though I did write it, I probably stole half of it. Can't be sure. Also, I cannot and do not attempt to speak for every individual person, and understand that opinions differ. If you don't agree with me, you may express that by not adding your signature, or with a neighborly missive if you feel like I need to know something; I may even be persuaded to re-write a section or sections, if you can tell me why and it makes sense. However, if you decide to use abusive language to express yourself you will likely be disregarded or worse. Civility, tact and restraint are all capable of being tools of oppression when stretched beyond a certain limit. Please let's don't test that theory or my level of tolerance. I'm but a man.</small></p>
+<h2>Contact:</h2> 
+
+<form id="contact-form">
+    <label>
+     <small> Name:</small><br>
+      <input type="text" name="name" required />
+    </label><br>
+    <label>
+    <small>  Email:</small><br>
+      <input type="email" name="email" required />
+    </label>
+    <br>
+    <label>
+      <small>Message:</small><br>
+      <textarea name="message" required></textarea>
+    </label><br>
+    <button type="submit">Send</button>
+  </form>
+
+<p><small>
+To contact the author of this page please use this contact form, or email: </small> <a href="mailto:jojo@kcmo.xyz">jojo@kcmo.xyz</a></p>
+<p><small>I don't claim to own this content, and though I did write it, I probably stole half of it. Can't be sure. Also, I cannot and do not attempt to speak for every individual person, and understand that opinions differ. If you don't agree with me, you may express that by not adding your signature to the document, simply navigating away from this page, or with a neighborly missive if you feel like I need to know something; I may even be persuaded to re-write a section or sections, if you can tell me why and it makes sense. However, if you decide to use abusive language to express yourself you will likely be disregarded or worse. Civility, tact and restraint are all capable of being tools of oppression when stretched beyond a certain limit. Please let's don't test that theory or my level of tolerance. Thanks :)</small></p>
 
 </div>
 
@@ -372,6 +401,31 @@ To contact the author of this page please use the contact form, or email: </smal
     canvas.style.pointerEvents = "none";
   }
 </script>
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
 
+      try {
+        const response = await fetch('/contact', { // Relative URL
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+          alert('Message sent successfully!');
+          e.target.reset();
+        } else {
+          const errorText = await response.text();
+          alert('Failed to send message: ' + errorText);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while sending your message.');
+      }
+    });
+  </script>
 </body>
 </html>
