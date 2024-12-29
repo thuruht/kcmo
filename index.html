@@ -10,123 +10,211 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style>
+
+<style>
+    /* General link styles */
     a {
-font-weight: 900;
-            text-decoration: none;
+        font-weight: 900;
+        text-decoration: none;
+        color: #004687; /* Royals Blue */
+        font-stretch: expanded;
+        letter-spacing: 0.05em; /* Slight spacing for readability */
+        transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
 
-            color: #7070f0;
+    a:hover {
+        color: #E31837; /* Chiefs Red */
+        text-shadow: 0 0 10px #E31837, 0 0 20px #E31837;
+    }
 
-           font-stretch: expanded;
+    /* Body styling */
+    body {
+        font-family: 'Noto Sans Mono', monospace;
+        margin: 12px;
+        background-color: #1A1A1A; /* Dark Gray */
+        color: #E0E0E0; /* Light Gray */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
 
-            transition: color 0.3s ease;
+    /* Page container */
+    .page {
+        background-color: #2E2E2E; /* Medium Dark Gray */
+        color: #E0E0E0; /* Light Gray */
+        border: 1px solid #505050; /* Subtle modern gray border */
+        border-radius: 12px;
+        box-shadow: 1px -1px 5px #F606F96f, -1px 1px 5px #F606F66f; /* Glow effect */
+        padding: 16px;
+        margin: 20px auto;
+        width: 94vw;
+        max-width: 500px; /* Ensure pages do not exceed a readable width */
+    }
 
-        }
+    h1, h3 {
+        text-align: center; /* Center headers */
+        margin-bottom: 20px;
+    }
 
+    /* Top and Bottom Navigation */
+    #top, #bottom {
+        background-color: #2E2E2E;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; /* Distribute links evenly */
+        align-items: center; /* Center links vertically */
+        gap: 16px; /* Space between links */
+        padding: 10px 20px; /* Add padding for spacing */
+        margin: 10px auto; /* Align with other page divs */
+        width: 94vw; /* Match page width */
+        max-width: 500px; /* Consistent with .page */
+    }
 
-        a:hover {
-
-            color: #f070f0;
-
-        }
-
-        body {
-            font-family: 'Noto Sans Mono', monospace;
-            margin: 12px;
-         background-color: #437C33;
-          color: #606060;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-        
-        .page {
-            
-                background-color: #1F0000;
-            color: #969980;
-            border: 1px solid #50505090;
-            border-radius: 12px;
-            box-shadow: 1px -1px 3px #F606F96f, -1px 1px 3px #f606f66f ;
-            padding: 12px;
-            margin-left: 20px;
-            margin-right: 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 94vw;
-            
-        }
-        
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-stretch: extra-expanded;
-            line-height: normal;
-        }
- 
-      #signatureCanvas {
-      background-color:#c0c0c0;
-        border: 1px solid #30303030;
-        width: 468px;
-        height: 128px;
-        touch-action: none; /* Prevent scrolling on touch devices */
-      }
-      
-      #typedName {
-         background-color:#c0c0c0;
-        border: 1px solid #30303030;
-        width: 468px;
-      }
-      
-      input {
-         background-color:#c0c0c0;
-        border: 1px solid #30303030;
-      }
-     textarea {
-         background-color:#c0c0c0;
-        border: 1px solid #30303030;
-        width: 468px; height: 128px;
-      }
-      
-     #gallery {
-    display: flex;           /* turn on flexbox */
-    flex-wrap: wrap;         /* wrap to next line if not enough horizontal space */
-    gap: 1rem;               /* optional space between items */
-  }
-
-  #gallery div {
-    border: 1px solid #30303030;
-    background-color: #c0c0c0;
-    padding: 10px;
-    margin: 0;
-    width: 200px;            /* or max-width: 200px if you like */
-    box-sizing: border-box;  /* so padding + width works as you expect */
-  }
-
-  #gallery img {
-    max-width: 100%; /* so the image fits the container width */
+#top img, #bottom img {
+    width: 128px;
     height: auto;
-   border: 1px solid #30303030;}
-   
-hr { color: #00ff0033; width: 66%; height: 0px;
-      }
-      
-#top, #bottom {
-    flex-direction: row;        /* Horizontal layout */
-    justify-content: space-around; /* Distribute space evenly */
-    gap: 0.03rem;                  /* Space between items */
-    font-size: 0.7rem;
+    transition: transform 0.3s ease;
 }
 
-    </style>
+
+    #top img:hover, #bottom img:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 10px #E31837, 0 0 20px #E31837; /* Chiefs Red glow */
+    }
+
+    /* Forms and Form-like Sections */
+    form, #sign {
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+        align-items: flex-start; /* Left-align form fields */
+        gap: 12px; /* Space between form elements */
+        max-width: 468px; /* Match signature form width */
+        margin: 0 auto; /* Center the form container */
+        padding: 12px 16px; /* Add padding inside the form container */
+        white-space: normal; /* Ensure line breaks work */
+    }
+
+    input, textarea, #signatureCanvas {
+        font-family: 'Noto Sans Mono', monospace;
+        color: #E0E0E0; /* Inherit light gray text */
+        background-color: #2E2E2E; /* Medium Dark Gray */
+        border: 1px solid #444444; /* Subtle border */
+        border-radius: 5px; /* Smooth edges */
+        padding: 8px 12px;
+        width: 100%; /* Full width of the form container */
+        box-sizing: border-box; /* Include padding in width calculation */
+    }
+
+    textarea {
+        height: 128px; /* Match original height */
+    }
+
+    button {
+        font-family: 'Noto Sans Mono', monospace;
+        color: #E0E0E0; /* Light text */
+        background-color: #E31837; /* Chiefs Red */
+        border: 1px solid #E31837;
+        border-radius: 5px;
+        padding: 8px;
+        width: 168px; /* Fixed width for all buttons */
+        cursor: pointer;
+        align-self: center; /* Center buttons horizontally in their containers */
+        transition: transform 0.2s ease, background-color 0.3s ease;
+    }
+
+    button:hover {
+        transform: scale(1.05);
+        background-color: #004687; /* Royals Blue */
+    }
+
+    /* Checkbox Alignment */
+    label {
+        display: flex;
+        align-items: center; /* Align checkbox and text */
+        gap: 8px; /* Space between checkbox and text */
+        width: 100%;
+    }
+
+    /* Gallery */
+    #gallery {
+        display: flex;
+        flex-wrap: wrap; /* Wrap items to the next line */
+        justify-content: center; /* Center gallery items */
+        gap: 1rem; /* Space between gallery items */
+        max-width: 100%; /* Prevent overflow on larger screens */
+        padding: 10px;
+    }
+
+    #gallery div {
+        background-color: #3A3A3A; /* Darker gray for gallery items */
+        border: 1px solid #505050; /* Subtle border for separation */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+        text-align: center; /* Center content inside gallery items */
+        padding: 10px;
+        flex: 1 1 calc(33.33% - 16px); /* Dynamic width to fit at least 3 items */
+        max-width: 200px; /* Ensure items don't get too wide */
+        border-radius: 8px; /* Add slight rounding for smoother look */
+    }
+
+    #gallery div:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(227, 24, 55, 0.4), 0 4px 6px rgba(227, 24, 55, 0.2); /* Chiefs Red shadow */
+    }
+
+    #gallery img {
+        max-width: calc(100% - 10px); /* Prevent crowding by padding inside container */
+        height: auto;
+        margin: 0 auto; /* Center the image */
+        border: 1px solid #BDBDBD; /* Subtle border around image */
+        background-color: #F5F5F5; /* Lighter gray for image background */
+        border-radius: 4px; /* Slight rounding for the image itself */
+        padding: 4px; /* Padding to separate image from border */
+        box-sizing: border-box; /* Include padding and border in size */
+    }
+
+    /* Name above the image */
+    #gallery div p {
+        color: #E0E0E0; /* Light gray for better contrast */
+        font-size: 0.9rem; /* Slightly smaller text for the name */
+        margin-bottom: 8px; /* Space between name and image */
+        background-color: #444444; /* Slightly darker gray for the text area */
+        padding: 4px 8px; /* Add padding for readability */
+        border-radius: 4px; /* Smooth edges for text background */
+    }
+
+    /* General HR Styling */
+    hr {
+        color: #444444; /* Subtle dark gray */
+        border: none; /* Remove default border */
+        height: 1px; /* Thin line */
+        background-color: #444444; /* Consistent dark gray color */
+        width: 94vw; /* Match page width */
+        max-width: 500px; /* Align with the max-width of .page divs */
+        margin: 16px auto; /* Center HR */
+    }
+
+    /* HR inside .page */
+    .page hr {
+        width: 100%; /* Full width inside the page */
+        max-width: unset; /* Remove max-width inside page */
+        margin: 12px 0; /* Add vertical spacing */
+    }
+</style>
+
+
 </head>
 <body>
-<div class="page" id="top"><a href="#top"><img src="./par.png" alt="kcmo.xyz" style="width: 128px; height: auto;"></a> <a href="#letter">Pt.I</a> <a href="#bgde">Pt.II</a> <a href="#signs">Signatures</a> <a href="#contact">Contact</a>
-</div>
-        
+  <div class="page" id="top">
+        <a href="#top">
+            <img src="./par.png" alt="kcmo.xyz">
+        </a>
+        <a href="#letter">Pt.I</a>
+        <a href="#bgde">Pt.II</a>
+        <a href="#signs">Signatures</a>
+        <a href="#contact">Contact</a>
+    </div>
  <br> <hr> <br>
  
     <div class="page" id="letter">
@@ -246,7 +334,7 @@ hr { color: #00ff0033; width: 66%; height: 0px;
 </h3>
 
 <!-- Now the gallery is only for the “cards” (submissions). -->
-<div id="gallery" style="display: flex; flex-wrap: wrap; gap: 1rem;">
+<div id="gallery">
 </div>
 </div> <!-- closes the .page div -->
 
@@ -279,8 +367,15 @@ To contact the author of this page please use this contact form, or email: </sma
 </div>
 
 <br><hr><br>
-<div class="page" id="bottom"><a href="#top"><img src="./par.png" alt="kcmo.xyz" style="width: 128px; height: auto;"></a> <a href="#letter">Pt.I</a> <a href="#bgde">Pt.II</a> <a href="#signs">Signatures</a> <a href="#contact">Contact</a>
-</div>
+    <div class="page" id="bottom">
+        <a href="#top">
+            <img src="./par.png" alt="kcmo.xyz">
+        </a>
+        <a href="#letter">Pt.I</a>
+        <a href="#bgde">Pt.II</a>
+        <a href="#signs">Signatures</a>
+        <a href="#contact">Contact</a>
+    </div>
 <script>
   // 1) Grab your elements at the top
   const canvas = document.getElementById("signatureCanvas");
@@ -401,6 +496,7 @@ To contact the author of this page please use this contact form, or email: </sma
     canvas.style.pointerEvents = "none";
   }
 </script>
+
   <script>
     document.getElementById('contact-form').addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -427,5 +523,101 @@ To contact the author of this page please use this contact form, or email: </sma
       }
     });
   </script>
+  
+<script src="./js/gsap.min.js"></script>
+
+<!-- GSAP Plugins -->
+<script src="./js/CSSRulePlugin.min.js"></script>
+<script src="./js/CustomEase.min.js"></script>
+<script src="./js/Draggable.min.js"></script>
+<script src="./js/EaselPlugin.min.js"></script>
+<script src="./js/EasePack.min.js"></script>
+<script src="./js/Flip.min.js"></script>
+<script src="./js/MotionPathPlugin.min.js"></script>
+<script src="./js/Observer.min.js"></script>
+<script src="./js/PixiPlugin.min.js"></script>
+<script src="./js/ScrollToPlugin.min.js"></script>
+<script src="./js/ScrollTrigger.min.js"></script>
+<script src="./js/TextPlugin.min.js"></script>
+
+<script>
+    // Register all GSAP plugins
+    gsap.registerPlugin(
+        CSSRulePlugin,
+        CustomEase,
+        Draggable,
+        EaselPlugin,
+        EasePack,
+        Flip,
+        MotionPathPlugin,
+        Observer,
+        PixiPlugin,
+        ScrollToPlugin,
+        ScrollTrigger,
+        TextPlugin
+    );
+
+    // GSAP Animations
+
+    // Section fade-in animation
+    document.querySelectorAll('.page').forEach((section, index) => {
+        gsap.from(section, {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            delay: index * 0.3,
+        });
+    });
+
+    // Gallery item animation on insertion using MutationObserver
+    const gallery = document.getElementById('gallery');
+    const galleryObserver = new MutationObserver((mutationsList) => {
+        mutationsList.forEach((mutation) => {
+            if (mutation.type === "childList") {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType === 1) { // Ensure it's an element node
+                        gsap.fromTo(node, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.5 });
+                    }
+                });
+            }
+        });
+    });
+
+    // Start observing the gallery container
+    galleryObserver.observe(gallery, {
+        childList: true, // Observe direct children being added or removed
+    });
+
+    // Button click animation
+    document.querySelectorAll('button').forEach(button => {
+        button.addEventListener('click', () => {
+            gsap.fromTo(button, { scale: 1 }, { scale: 1.2, duration: 0.2, yoyo: true, repeat: 1 });
+        });
+    });
+
+    // Smooth scroll animation for links
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.querySelector(link.getAttribute('href'));
+            if (target) {
+                gsap.to(window, { scrollTo: target, duration: 1, ease: "power2.out" });
+            }
+        });
+    });
+
+    // Floating animation for the logo
+    gsap.to('#top img, #bottom img', {
+        y: 10,
+        repeat: -1,
+        yoyo: true,
+        duration: 2,
+        ease: 'power1.inOut',
+    });
+
+    // Log device pixel ratio for debugging
+    console.log(window.devicePixelRatio);
+</script>
+
 </body>
 </html>
