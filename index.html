@@ -11,6 +11,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
+    a {
+
+            text-decoration: none;
+
+            color: #303070;
+
+            letter-spacing: 0.4em;
+
+            transition: color 0.3s ease;
+
+        }
+
+
+        a:hover {
+
+            color: #703070;
+
+        }
+
         body {
             font-family: 'Noto Sans Mono', monospace;
             margin: 12px;
@@ -36,6 +55,7 @@
             align-items: center;
             justify-content: center;
             width: 94vw;
+            min-width:600px;
         }
         
         h1 {
@@ -80,14 +100,23 @@
       hr { border-top: 1px solid #30303030;
       
       }
+      
+#top, #bottom {
+    flex-direction: row;        /* Horizontal layout */
+    justify-content: space-around; /* Distribute space evenly */
+    gap: 1rem;                  /* Space between items */
+    font-size: 0.6rem;
+}
+
     </style>
 </head>
 <body>
-<div class="page"><a href="https://kcmo.xyz/">kcmo.xyz</a></div>
+<div class="page" id="top"><a href="https://kcmo.xyz/#top"><h1>kcmo.xyz</h1></a> | <a href="#letter">Pt.I : The Letter</a> | <a href="#bgde">Pt.II - The Brigade</a> | <a href="#signs">Signatures</a> |  <a href="#contact">Contact</a>
+</div>
         
  <br> <hr> <br>
  
-    <div class="page">
+    <div class="page" id="letter">
         <h1>The Last Letter Manifesto</h1>
         <section id="part1">
             <h2>Part I - The Letter</h2>
@@ -121,7 +150,7 @@
         </section>
         <section id="partA">
             <p>
-                ** To those in power: your time is up. The people of Kansas City will no longer tolerate systems that harm us. Embody these changes set forth, or step aside now. You will sleep a lot better at night. **
+               <strong> ** To those in power: <em>your time is up.</em> The people of Kansas City will no longer tolerate systems that harm us. Embody these changes set forth, or <em>step aside now.</em> You will sleep a lot better at night. **</strong>
             </p>
         </section>
         <section id="sig">
@@ -133,7 +162,7 @@
         
  <br> <hr> <br>
        
-        <div class="page">
+        <div class="page" id="bgde">
         
         
         <section id="part2">
@@ -148,10 +177,14 @@
             <h3>A Non-Violent Wing</h3>
             <p>
                 (LLBA-KCMO:NVW); This wing will focus on supporting existing abolitionist and mutual aid groups, attending protests and actions, and building community resilience without armed engagement, as well as drafting future documents and charters as needed for the direction and use of the Brigade. No more letters though, if you please. ;) This Wing of the Brigade will consist of all who wish to participate.
-            </p>
-            <h3>An Invitation to Act</h3>
+            </p></div>
+            
+ <br> <hr> <br>
+            
+            <div class="page" id="act">
+            <h2>An Invitation to Act</h2>
             <p>
-                Join the Last Letter Brigade for Abolition in Kansas City, Missouri and help us bring real change to a city where lip service and token gestures have often been just a prelude to new and crueler forms of injustice. Your neighbors need your help.
+                Join with the Last Letter Brigade for Abolition in Kansas City, Missouri in demanding real changes from a city and state where lip service and token gestures have often been just a prelude to new and crueler forms of injustice. We must no longer accept the status quo; your neighbors need your help to shape our city into a  better home for everyone.
             </p>
             
             </section>
@@ -159,7 +192,7 @@
             
  <br> <hr> <br>
             
-            <div class="page">
+            <div class="page" id="signs">
    
     
             <section id="sign"><h3>Add your Signature or Mark</h3>
@@ -208,6 +241,17 @@
 
 <br><hr><br>
 
+<div class="page" id="contact">
+<h2>Contact:</h2> <p><small>
+To contact the author of this page please use the contact form, or email: </small> <a href="mailto:jojo@kcmo.xyz">jojo@kcmo.xyz</a></p>
+<p><small>I don't own this page or this content, and though I did write it, I probably stole half of it. Can't be sure. Also, I cannot and do not attempt to speak for every individual person, and understand that opinions differ. If you don't agree with me, you may express that by not adding your signature, or with a neighborly missive if you feel like I need to know something; if you decide to use abusive language to express yourself you will likely be disregarded or worse.</small></p>
+
+</div>
+
+<br><hr><br>
+<div class="page" id="bottom"><a href="https://kcmo.xyz/#top"><h1>kcmo.xyz</h1></a> | <a href="#letter">Pt.I : The Letter</a> | <a href="#bgde">Pt.II - The Brigade</a> | <a href="#signs">Signatures</a> |  <a href="#contact">Contact</a>
+
+</div>
 <script>
   // 1) Grab your elements at the top
   const canvas = document.getElementById("signatureCanvas");
