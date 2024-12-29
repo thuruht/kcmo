@@ -15,9 +15,9 @@
 
             text-decoration: none;
 
-            color: #303070;
+            color: #7070f0;
 
-            letter-spacing: 0.2em;
+           font-stretch: expanded;
 
             transition: color 0.3s ease;
 
@@ -26,15 +26,15 @@
 
         a:hover {
 
-            color: #703070;
+            color: #f070f0;
 
         }
 
         body {
             font-family: 'Noto Sans Mono', monospace;
             margin: 12px;
-            background-color: #c0c0c0;
-            color: #333;
+         background-color: #00000F;
+          color: #606060;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -43,10 +43,12 @@
         }
         
         .page {
-            background-color: #ffc0c0;
-            border: 1px solid #30303030;
+            
+                background-color: #0F030C;
+            color: #909990;
+            border: 1px solid #50505090;
             border-radius: 12px;
-            box-shadow: -4px 4px 4px #30303030;
+            box-shadow: 1px -1px 3px #F606F96f, -1px 1px 3px #f606f66f ;
             padding: 12px;
             margin-left: 20px;
             margin-right: 16px;
@@ -87,6 +89,7 @@
 
   #gallery div {
     border: 1px solid #30303030;
+    background-color: #c0c0c0;
     padding: 10px;
     margin: 0;
     width: 200px;            /* or max-width: 200px if you like */
@@ -97,21 +100,21 @@
     max-width: 100%; /* so the image fits the container width */
     height: auto;
    border: 1px solid #30303030;}
-      hr { border-top: 1px solid #30303030;
-      
+   
+hr { color: #00ff0033; width: 66%; height: 0px;
       }
       
 #top, #bottom {
     flex-direction: row;        /* Horizontal layout */
     justify-content: space-around; /* Distribute space evenly */
-    gap: 1rem;                  /* Space between items */
-    font-size: 0.6rem;
+    gap: 0.03rem;                  /* Space between items */
+    font-size: 0.7rem;
 }
 
     </style>
 </head>
 <body>
-<div class="page" id="top"><a href="https://kcmo.xyz/#top"><h1>kcmo.xyz</h1></a> <a href="#letter">Pt.I</a> | <a href="#bgde">Pt.II</a> | <a href="#signs">Signatures</a> |  <a href="#contact">Contact</a>
+<div class="page" id="top"><a href="#top"><img src="./par.png" alt="kcmo.xyz" style="width: 128px; height: auto;"></a> <a href="#letter">Pt.I</a> <a href="#bgde">Pt.II</a> <a href="#signs">Signatures</a> <a href="#contact">Contact</a>
 </div>
         
  <br> <hr> <br>
@@ -231,8 +234,6 @@
 <h3 id="submissionHeading">
   Total Signatures: <span id="submissionCount"></span>
 </h3>
-<!-- Optional horizontal line -->
-<hr />
 
 <!-- Now the gallery is only for the “cards” (submissions). -->
 <div id="gallery" style="display: flex; flex-wrap: wrap; gap: 1rem;">
@@ -244,13 +245,12 @@
 <div class="page" id="contact">
 <h2>Contact:</h2> <p><small>
 To contact the author of this page please use the contact form, or email: </small> <a href="mailto:jojo@kcmo.xyz">jojo@kcmo.xyz</a></p>
-<p><small>I don't own this page or this content, and though I did write it, I probably stole half of it. Can't be sure. Also, I cannot and do not attempt to speak for every individual person, and understand that opinions differ. If you don't agree with me, you may express that by not adding your signature, or with a neighborly missive if you feel like I need to know something; if you decide to use abusive language to express yourself you will likely be disregarded or worse.</small></p>
+<p><small>I don't claim to own this content, and though I did write it, I probably stole half of it. Can't be sure. Also, I cannot and do not attempt to speak for every individual person, and understand that opinions differ. If you don't agree with me, you may express that by not adding your signature, or with a neighborly missive if you feel like I need to know something; I may even be persuaded to re-write a section or sections, if you can tell me why and it makes sense. However, if you decide to use abusive language to express yourself you will likely be disregarded or worse. Civility, tact and restraint are all capable of being tools of oppression when stretched beyond a certain limit. Please let's don't test that theory or my level of tolerance. I'm but a man.</small></p>
 
 </div>
 
 <br><hr><br>
-<div class="page" id="bottom"><a href="https://kcmo.xyz/#top"><h1>kcmo.xyz</h1></a> <a href="#letter">Pt.I</a> | <a href="#bgde">Pt.II</a> | <a href="#signs">Signatures</a> |  <a href="#contact">Contact</a>
-
+<div class="page" id="bottom"><a href="#top"><img src="./par.png" alt="kcmo.xyz" style="width: 128px; height: auto;"></a> <a href="#letter">Pt.I</a> <a href="#bgde">Pt.II</a> <a href="#signs">Signatures</a> <a href="#contact">Contact</a>
 </div>
 <script>
   // 1) Grab your elements at the top
