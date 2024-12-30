@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RGUE Login</title>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+  <form id="login-form">
+    <input type="email" name="email" placeholder="Email" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAAA4LggNTHUrW2kom"></div>
+    <button type="submit">Login</button>
+  </form>
+  <script src="script.js"></script>
+</body>
+</html>
