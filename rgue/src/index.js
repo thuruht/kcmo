@@ -1,7 +1,6 @@
 import { Router } from 'itty-router';
 import bcrypt from 'bcryptjs';
 import jwt from '@tsndr/cloudflare-worker-jwt';
-import { createTransport } from 'nodemailer';
 
 const router = Router();
 

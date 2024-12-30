@@ -2,9 +2,8 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
   event.preventDefault();
   const formData = new FormData(event.target);
 
-  // Get Turnstile token
-  const token = document.querySelector('.cf-turnstile').dataset.token;
-  formData.append('captchaToken', token);
+  const captchaToken = document.querySelector('.cf-turnstile').dataset.token;
+  formData.append('captchaToken', captchaToken);
 
   const response = await fetch('/api/login', {
     method: 'POST',
