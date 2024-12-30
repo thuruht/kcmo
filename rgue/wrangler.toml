@@ -1,11 +1,10 @@
+
 name = "rgue"
-type = "javascript"
 compatibility_date = "2024-12-29"
 main = "src/index.js"
 
 routes = [
-  "https://kcmo.xyz/rgue/*",
-  "https://kcmo.xyz/api/*"
+  "https://rgue.kcmo.xyz/api/*"
 ]
 
 [[d1_databases]]
@@ -20,12 +19,10 @@ id = "72156858ea9d4f069c6e7575f583f4ea"
 [[r2_buckets]]
 binding = "FILES"
 bucket_name = "rguekcmo-file"
-bucket_id = "goofiel_rguekcmo"
 
 [[r2_buckets]]
 binding = "IMAGES"
 bucket_name = "rguekcmo-image"
-bucket_id = "goomager_rguekcmo"
 
 [vars]
 JWT_SECRET = "207df79eae8a91bb6f0fbe56b15878980ee1d303121ff6f7211c449f69e847e3e406f573a5779fe0342d2f1dad7c47fac6349a1e4839a006e66883f46d3d6416"
@@ -36,3 +33,6 @@ SMTP_PORT = "587"
 SMTP_SECURE = "true"
 TURNSTILE_SITE_KEY = "0x4AAAAAAA4LggNTHUrW2kom"
 TURNSTILE_SECRET_KEY = "0x4AAAAAAA4Lgvu1DW6J1rIARU9--SAsjLE"
+
+[build]
+command = "npm install"
