@@ -9,7 +9,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };
 
-// Handle OPTIONS requests
+// Handle OPTIONS preflight requests
 async function handleOptions() {
   return new Response(null, { headers: corsHeaders });
 }
@@ -45,7 +45,6 @@ export default {
       return router.handle(request, env);
     }
 
-    // Let non-API requests go to GitHub Pages via Cloudflare
-    return fetch(request);
+    return new Response('Not Found', { status: 404 });
   },
 };
