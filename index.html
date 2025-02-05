@@ -10,26 +10,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ <!-- Include both fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
     /* General link styles */
     a {
         font-weight: 900;
         text-decoration: none;
-        color: #004687; /* Royals Blue */
+        color: #808687; 
         font-stretch: expanded;
         letter-spacing: 0.05em; /* Slight spacing for readability */
         transition: color 0.3s ease, text-shadow 0.3s ease;
     }
 
     a:hover {
-        color: #E31837; /* Chiefs Red */
+        color: #E3E8E7; 
         text-shadow: 0 0 10px #E31837, 0 0 20px #E31837;
     }
 
     /* Body styling */
     body {
-        font-family: 'Noto Sans Mono', monospace;
+         font-family: 'Montserrat', sans-serif;
+         line-height:1.5; letter-spacing:0.022rem;
         margin: 12px;
         background-color: #1A1A1A; /* Dark Gray */
         color: #E0E0E0; /* Light Gray */
@@ -42,15 +45,15 @@
 
     /* Page container */
     .page {
-        background-color: #2E2E2E; /* Medium Dark Gray */
+        background-color: #2F2023; /* Medium Dark Gray */
         color: #E0E0E0; /* Light Gray */
         border: 1px solid #505050; /* Subtle modern gray border */
         border-radius: 12px;
-        box-shadow: 1px -1px 5px #F606F96f, -1px 1px 5px #F606F66f; /* Glow effect */
+        box-shadow: 1px -1px 1px #4646396f, -1px 1px 1px #46F46396f; /* Glow effect */
         padding: 16px;
         margin: 20px auto;
         width: 94vw;
-        max-width: 500px; /* Ensure pages do not exceed a readable width */
+        max-width: 640px; /* Ensure pages do not exceed a readable width */
     }
 
     h1, h3 {
@@ -60,30 +63,30 @@
 
     /* Top and Bottom Navigation */
     #top, #bottom {
-        background-color: #2E2E2E;
+        background-color: #2F2023;
         display: flex;
-        flex-direction: row;
-        justify-content: space-between; /* Distribute links evenly */
-        align-items: center; /* Center links vertically */
-        gap: 16px; /* Space between links */
-        padding: 10px 20px; /* Add padding for spacing */
-        margin: 10px auto; /* Align with other page divs */
+        flex-direction: column;
+        justify-content: center; 
+        align-items: center;\
+        gap: 8px; /* Space between links */
+        padding: 8px 8px; /* Add padding for spacing */
+        margin: 8px auto; /* Align with other page divs */
         width: 94vw; /* Match page width */
-        max-width: 500px; /* Consistent with .page */
+        max-width: 640px; /* Consistent with .page */
  		flex-wrap: wrap;
+ 		font-size:1rem;
     }
 
 #top img, #bottom img {
-    width: 128px;
+    width: 212px;
     height: auto;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease; margin-bottom:16px; border-radius:10%; border:1px solid #ffffff13;
 }
 
 
     #top img:hover, #bottom img:hover {
-        transform: scale(1.1);
-        box-shadow: 0 0 10px #E31837, 0 0 20px #E31837; /* Chiefs Red glow */
-    }
+        
+        box-shadow: 0 0 10px #E31837, 0 0 20px #E31837; }
 
     /* Forms and Form-like Sections */
     form, #sign {
@@ -115,8 +118,8 @@
     button {
         font-family: 'Noto Sans Mono', monospace;
         color: #E0E0E0; /* Light text */
-        background-color: #E31837; /* Chiefs Red */
-        border: 1px solid #E31837;
+        background-color: #434847;
+        border: 1px solid #838887;
         border-radius: 5px;
         padding: 8px;
         width: 168px; /* Fixed width for all buttons */
@@ -202,6 +205,25 @@
         max-width: unset; /* Remove max-width inside page */
         margin: 12px 0; /* Add vertical spacing */
     }
+        /* Style for the h1 with a gradient text effect */
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3em;
+      text-align: center;
+      padding: 8px;
+      /* Create a subtle gradient for the text */
+      background: linear-gradient(90deg, #ff7e5f, #feb47b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Each letter is an inline-block to allow individual transforms */
+    .letters {
+      display: inline-block;
+      transition: transform 0.3s ease;
+      /* The custom property --rotation will be set per letter */
+      transform: rotate(var(--rotation, 0deg));
+    }
 </style>
 
 
@@ -216,10 +238,10 @@
         <a href="#signs">Signatures</a>
         <a href="#contact">Contact</a>
     </div>
- <br> <hr> <br>
+<h1 id="mechanical-press">The Last Letter Manifesto</h1>
  
     <div class="page" id="letter">
-        <h1>The Last Letter Manifesto</h1>
+
         <section id="part1">
             <h2>Part I - The Letter</h2>
             <p>
@@ -320,24 +342,17 @@
     <button id="submitBtn">Submit</button>
 
         </section>
-    <!-- Where you had: <h2>Community Signatures</h2>
-     <div id="gallery"></div>
-     </div> 
-     <br><hr><br> 
-     <script> ... </script> -->
 
-<!-- Instead, we do something like this: -->
 <h2>Community Signatures</h2>
-<!-- The heading for total submissions goes here, outside the flex container. -->
-<!-- We'll show the count in a <span> so we can just update the text. -->
+
 <h3 id="submissionHeading">
   Total Signatures: <span id="submissionCount"></span>
 </h3>
 
-<!-- Now the gallery is only for the “cards” (submissions). -->
+
 <div id="gallery">
 </div>
-</div> <!-- closes the .page div -->
+</div> 
 
 <br><hr><br>
 
@@ -362,7 +377,7 @@
   </form>
 
 <p><small>
-To contact the author of this page please use this contact form, or email: </small> <a href="mailto:jojo@kcmo.xyz">jojo@kcmo.xyz</a></p>
+To contact the author of this page please use this contact form, or email: </small> <span class="material-icons">email</span> <a href="mailto:jojo@kcmo.xyz">jojo@kcmo.xyz</a></p>
 <p><small>I don't claim to own this content, and though I did write it, I probably stole half of it. Can't be sure. Also, I cannot and do not attempt to speak for every individual person, and understand that opinions differ. If you don't agree with me, you may express that by not adding your signature to the document, simply navigating away from this page, or with a neighborly missive if you feel like I need to know something; I may even be persuaded to re-write a section or sections, if you can tell me why and it makes sense. However, if you decide to use abusive language to express yourself you will likely be disregarded or worse. Civility, tact and restraint are all capable of being tools of oppression when stretched beyond a certain limit. Please let's don't test that theory or my level of tolerance. Thanks :)</small></p>
 
 </div>
@@ -378,22 +393,17 @@ To contact the author of this page please use this contact form, or email: </sma
         <a href="#contact">Contact</a>
     </div>
 <script>
-  // 1) Grab your elements at the top
   const canvas = document.getElementById("signatureCanvas");
   const signaturePad = new SignaturePad(canvas);
-
-  // Instead of always re-querying by ID for typedName & consent, let's store them.
   const nameInput = document.getElementById("typedName");
   const consentBox = document.getElementById("consent");
   const clearBtn = document.getElementById("clearBtn");
   const submitBtn = document.getElementById("submitBtn");
 
-  // Clear button
+
   clearBtn.addEventListener("click", () => {
     signaturePad.clear();
   });
-
-  // 2) On page load, check localStorage & fetch existing submissions
   window.addEventListener("DOMContentLoaded", async () => {
     // If localStorage says "hasSubmitted", disable the form right away
     const hasSubmitted = localStorage.getItem("hasSubmitted") === "true";
@@ -432,7 +442,7 @@ To contact the author of this page please use this contact form, or email: </sma
     const signatureDataUrl = signaturePad.toDataURL("image/png");
 
     try {
-      // POST to your Worker
+      // POST to Worker
       const response = await fetch("https://luge-worker.jojo-829.workers.dev/api/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -493,8 +503,6 @@ To contact the author of this page please use this contact form, or email: </sma
     nameInput.disabled = true;
     consentBox.disabled = true;
     submitBtn.disabled = true;
-    // Optionally disable drawing on the canvas
-    canvas.style.pointerEvents = "none";
   }
 </script>
 
@@ -607,18 +615,85 @@ To contact the author of this page please use this contact form, or email: </sma
         });
     });
 
-    // Floating animation for the logo
-    gsap.to('#top img, #bottom img', {
-        y: 10,
-        repeat: -1,
-        yoyo: true,
-        duration: 2,
-        ease: 'power1.inOut',
-    });
+// Create a timeline that loops infinitely and plays forward then backward (yoyo)
+const tl = gsap.timeline({ repeat: -1, yoyo: true });
+
+// 1. Simple translation and rotation with a slow, smooth motion
+tl.to('#top img', {
+  duration: 14,        // Slow movement over 14 seconds
+  x: 80,               // Move 80px to the right
+  y: 20,               // Move 20px down
+  rotation: 10,        // Rotate 10 degrees clockwise
+  ease: 'sine.inOut'   // Smooth easing in and out
+})
+
+// 2. Follow a curved path with auto-rotation (requires MotionPathPlugin)
+// This gives a more fluid, organic path movement
+.to('#top img', {
+  duration: 14,
+  motionPath: {
+    path: [
+      { x: 80, y: 20 },
+      { x: 120, y: -40 },
+      { x: 200, y: 0 },
+      { x: 150, y: 50 },
+      { x: 80, y: 20 }
+    ],
+    autoRotate: true
+  },
+  ease: 'sine.inOut'
+})
+
+// 3. Perform a “wiggle” using keyframes (multiple rapid changes in position and rotation)
+// This creates a playful, cartoon-like jitter effect.
+.to('#top img', {
+  duration: 14,
+  keyframes: [
+    { x: 90, y: 25, rotation: 15, duration: 3 },
+    { x: 70, y: 15, rotation: -15, duration: 4 },
+    { x: 85, y: 20, rotation: 5, duration: 3 },
+    { x: 80, y: 20, rotation: 0, duration: 4 }
+  ],
+  ease: 'sine.inOut'
+})
+
+// 4. A final movement returning the image closer to its starting state,
+// but with a twist—a slow rotation change and a slight scale effect.
+.to('#top img', {
+  duration: 14,
+  x: 0,
+  y: 0,
+  rotation: -10,
+  scale: 1.05,
+  ease: 'sine.inOut'
+});
+
+// The timeline is set to loop infinitely with yoyo, so it will play forward through these steps and then reverse.
+
 
     // Log device pixel ratio for debugging
     console.log(window.devicePixelRatio);
 </script>
+ <script>
+    // Select the h1 element
+    const h1 = document.getElementById('mechanical-press');
+    const text = h1.textContent;
+    h1.textContent = ''; // Clear existing text
 
+    // Loop over each character and wrap it in a span with a slight random rotation
+    for (let i = 0; i < text.length; i++) {
+      const span = document.createElement('span');
+      span.className = 'letters';
+      span.textContent = text[i];
+      
+      // If the character isn't a space, give it a random rotation between -3deg and 3deg
+      if (text[i] !== ' ') {
+        const angle = (Math.random() * 6 - 3).toFixed(1); // Random value between -3 and 3
+        span.style.setProperty('--rotation', angle + 'deg');
+      }
+      
+      h1.appendChild(span);
+    }
+  </script>
 </body>
 </html>
