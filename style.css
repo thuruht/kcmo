@@ -1,0 +1,291 @@
+
+    /* General link styles */
+    a {
+        font-weight: 600;
+        text-decoration: none;
+        color: #9AA0A3; /* Slightly brighter for readability */
+    font-size: clamp(1rem, 1.3vw, 1.1rem);
+        font-stretch: expanded;
+        letter-spacing: 0.05em; /* Slight spacing for readability */
+        transition: color 0.3s ease, text-shadow 0.3s ease; text-shadow: 1px 1px 5px #004687;
+    }
+
+    a:hover, a:focus-visible {
+        color: #E3E8E7; transform: scale(1.05);
+         text-shadow: 0 0 8px #E31837, 0 0 16px #E31837;
+    }
+    button:focus-visible, input:focus-visible, textarea:focus-visible {
+            outline: 1px solid #E31837;
+        }
+    /* Body styling */
+    body {
+         font-family: 'Montserrat', sans-serif;
+         font-weight:400;
+         line-height:1.5; letter-spacing:0.022rem;
+         margin: 0; /* Remove margin to prevent unwanted shifting */
+         background: linear-gradient(187deg,#1b1a11, #232328,#031308, #1f1311,#1b1a11);
+         background-size: cover; /* Ensures it covers the whole viewport */
+         background-attachment: fixed; /* Keeps it in place while scrolling */
+         background-position: center;
+        color: #f5f5f5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh; min-width:100vw;
+    }
+
+    /* Page container */
+    .page {
+        background-color: #2F2023; 
+        color: #E0E0E0; 
+        border: 1px solid #505050; 
+        border-radius: 12px;
+        box-shadow: 1px -1px 0 #4646396f, -1px 1px 0 #4639466f; 
+        padding: 16px;
+        margin: 20px auto;
+        width: 87vw;
+        max-width: 640px; box-sizing: border-box;
+    }
+
+    h1, h2, h3, h4, h5 {
+        text-align: center; /* Center headers */
+        margin-bottom: 10px;
+    }
+
+    /* Top and Bottom Navigation */
+    #top, #bottom {
+    
+        display: flex;
+        flex-direction: column;
+        justify-content: center; 
+        align-items: center;
+        padding: 2px 2px; /* Add padding for spacing */
+        margin: 8px auto; /* Align with other page divs */
+        width: 87vw; /* Match page width */
+        max-width: 640px; /* Consistent with .page */
+ 		flex-wrap: wrap;
+ 		
+    }
+     #bottom {
+        background-color: #2F2023; }
+        
+    #top {    margin-top: 12px;  display: flex; flex-direction: column; justify-content: center; align-items: center;   background-color: #2F202333;   background: 
+    linear-gradient(rgba(20, 7, 38, 0.3), rgba(0, 33, 28, 0.3), rgba(6, 39, 29, 0.3)),
+    url(./kc.png); background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;   height: clamp(212px, 40vw, 360px);
+        }
+
+        #topnav a {backdrop-filter:blur(16px); border-radius:50px; padding:4px 8px; background-color: #00000010;}
+        #topnav {
+            display: flex; flex-direction: row; justify-content: center; align-items: center;
+            gap: 8px;      padding: 2px 2px; /* Add padding for spacing */
+            margin: 8px auto; /* Align with other page divs */
+            width: 87vw; /* Match page width */
+            max-width: 640px; /* Consistent with .page */
+            height: auto;
+             flex-wrap: wrap;  
+            background: radial-gradient(ellipse at center,
+                          #460202, #121212, #212121, #1c321c, #121212, #212121, #151313,
+                          #2d1e1a, #2F2023, #220c22, #1d1c1c, #551505,
+                          #110f0f, #121212, #212121, #0e270e, #121212, #212121, #431616,
+                          #2d130c, #2F2023, #2a0b29, #232222, #311a15);    
+         animation: gradientShift 13s linear infinite alternate-reverse; background-size: 400% 400%;     }
+
+#top img {
+width:64px;
+    height: auto; border-radius: 10px; border:0px solid transparent;}
+    #top img:hover, #bottom img:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 10px #E3183766, 0 0 20px #E3183788; }
+    #top .imconn {width:fit-content; max-width: 29%; transition: transform 0.3s ease; margin:6px;padding:8px; border-radius:100px; border:1px solid #ffffff13;  background:#00000010;}
+        #bottom img { width:64px; height: auto; border-radius: 10px; border:0px solid transparent;}
+
+
+    /* Forms and Form-like Sections */
+    form, #sign {
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+        align-items: flex-start; /* Left-align form fields */
+        gap: 12px; /* Space between form elements */
+        max-width: 468px; /* Match signature form width */
+        margin: 0 auto; /* Center the form container */
+        padding: 12px 16px; /* Add padding inside the form container */
+        white-space: normal; /* Ensure line breaks work */
+    }
+
+    input, textarea, #signatureCanvas {
+        font-family: 'Noto Sans Mono', monospace;
+        color: #F0F0F0;
+    background-color: #3A2E3E;
+    border: 1px solid #666666;
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+        border-radius: 5px; /* Smooth edges */
+        padding: 8px 10px;
+        width: 100%; /* Full width of the form container */
+        box-sizing: border-box; /* Include padding in width calculation */
+    }
+
+    textarea {
+        height: 128px; /* Match original height */
+    }
+
+    button {
+        font-family: 'Noto Sans Mono', monospace;
+           font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-weight: 600;
+        color: #E0E0E0; /* Light text */
+        background-color: #434847;
+        border: 1px solid #838887;
+        border-radius: 5px;
+        padding: 8px;
+        width: 168px; /* Fixed width for all buttons */
+        cursor: pointer;
+        align-self: center; /* Center buttons horizontally in their containers */
+        transition: transform 0.2s ease, background-color 0.3s ease;
+    }
+button:hover, button:focus-visible {
+    transform: scale(1.1);
+        background-color: #004687;
+    box-shadow: 0 0 10px #004687;
+}
+    /* Checkbox Alignment */
+    label {
+        display: flex;
+        align-items: center; /* Align checkbox and text */
+        gap: 8px; /* Space between checkbox and text */
+        width: 100%;
+    }
+
+    /* Gallery */
+    #gallery {
+       display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+            gap: 4px;
+            max-width: 100%;
+            padding: 10px;
+    }
+
+    #gallery div {
+        background-color: #2A1A3B   ; /* Darker gray for gallery items */
+        border: 1px solid #505050; /* Subtle border for separation */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+        text-align: center; /* Center content inside gallery items */
+        padding: 8px;
+        margin:8px;
+        flex: 1 1 calc(33.33% - 16px); /* Dynamic width to fit at least 3 items */
+        max-width: 150px; /* Ensure items don't get too wide */
+        border-radius: 6px; /* Add slight rounding for smoother look */
+    }
+
+    #gallery div:hover {
+        transform: scale(1.15);
+        box-shadow: 0 8px 16px rgba(227, 24, 55, 0.4), 0 4px 6px rgba(227, 24, 55, 0.2); 
+    }
+
+    #gallery img { max-width:100%;
+        height: auto;
+        object-fit: contain; 
+        margin: 0 auto; /* Center the image */
+        border: 1px solid #BDBDBD; /* Subtle border around image */
+        background-color: #F5F5F5; /* Lighter gray for image background */
+        border-radius: 4px; /* Slight rounding for the image itself */
+        padding:2px; /* Padding to separate image from border */
+        box-sizing: border-box; /* Include padding and border in size */
+    }
+
+    /* Name above the image */
+    #gallery div p {
+        color: #E0E0E0; /* Light gray for better contrast */
+        font-size: 0.8rem; /* Slightly smaller text for the name */
+        margin-bottom: 8px; /* Space between name and image */
+        background-color: #444444; /* Slightly darker gray for the text area */
+        padding: 4px 8px; /* Add padding for readability */
+        border-radius: 4px; /* Smooth edges for text background */
+    }
+
+    /* General HR Styling */
+    hr {
+        color: #444444; /* Subtle dark gray */
+        border: none; /* Remove default border */
+        height: 1px; /* Thin line */
+        background-color: #444444; /* Consistent dark gray color */
+        width: 94vw; /* Match page width */
+        max-width: 500px; /* Align with the max-width of .page divs */
+        margin: 6px auto; /* Center HR */
+    }
+    /* HR inside .page */
+    .page hr {
+        width: 100%; /* Full width inside the page */
+        max-width: unset; /* Remove max-width inside page */
+        margin: 6px 0; /* Add vertical spacing */
+    }
+    
+      /* Each letter is an inline-block to allow individual transforms */
+    .letters {
+      display: inline-block;
+      transition: transform 0.3s ease;
+      /* The custom property --rotation will be set per letter */
+      transform: rotate(var(--rotation, 0deg));
+    }
+        /* Style for the h1 with a gradient text effect */
+  /* H1 Styling & Animation Fix */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: 0.3rem;
+            text-align: center;
+            vertical-align:bottom;
+            padding: 8px;
+            background: linear-gradient(90deg, #ff7e5f, #feb4fb, #3c3c3c);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 6s infinite linear alternate;
+        }
+        
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+   h2 {
+            font-size: clamp(1.8rem, 2vw, 2.2rem);
+            font-weight: 600;
+            letter-spacing: 0.04rem;
+            margin-bottom: 10px;
+        }
+        h3 {
+            font-size: clamp(1.3rem, 1.8vw, 1.6rem);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        h4 {
+            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+            font-weight: 400;
+            margin-bottom: 6px;
+        }
+        p {
+            font-size: clamp(1rem, 1.2vw, 1.1rem);
+        }
+
+        /* Call-to-Action Enhancements */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        #submitBtn {
+            animation: pulse 1.8s infinite ease-in-out;
+        }
+  /* Confirmation Message Fade-In */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }

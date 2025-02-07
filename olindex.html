@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Last Letter - xyz.kcmo.xyz</title>
+    <title>The Last Letter</title>
       <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.5/dist/signature_pad.umd.min.js"></script>
       <link rel="icon" href="./favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,23 +12,300 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
  <!-- Include both fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./style.css">
+
+<style>
+    /* General link styles */
+    a {
+        font-weight: 600;
+        text-decoration: none;
+        color: #9AA0A3; /* Slightly brighter for readability */
+    font-size: clamp(1rem, 1.3vw, 1.1rem);
+        font-stretch: expanded;
+        letter-spacing: 0.05em; /* Slight spacing for readability */
+        transition: color 0.3s ease, text-shadow 0.3s ease; text-shadow: 1px 1px 5px #004687;
+    }
+
+    a:hover, a:focus-visible {
+        color: #E3E8E7; transform: scale(1.05);
+         text-shadow: 0 0 8px #E31837, 0 0 16px #E31837;
+    }
+    button:focus-visible, input:focus-visible, textarea:focus-visible {
+            outline: 1px solid #E31837;
+        }
+    /* Body styling */
+    body {
+         font-family: 'Montserrat', sans-serif;
+         font-weight:400;
+         line-height:1.5; letter-spacing:0.022rem;
+        margin: 12px;
+        background-color: #1A1A1A; /* Dark Gray */
+        color: #f5f5f5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    /* Page container */
+    .page {
+        background-color: #2F2023; 
+        color: #E0E0E0; 
+        border: 1px solid #505050; 
+        border-radius: 12px;
+        box-shadow: 1px -1px 0 #4646396f, -1px 1px 0 #4639466f; 
+        padding: 16px;
+        margin: 20px auto;
+        width: 87vw;
+        max-width: 640px; 
+    }
+
+    h1, h2, h3, h4, h5 {
+        text-align: center; /* Center headers */
+        margin-bottom: 10px;
+    }
+
+    /* Top and Bottom Navigation */
+    #top, #bottom {
+    
+        display: flex;
+        flex-direction: column;
+        justify-content: center; 
+        align-items: center;
+        gap: 3px; /* Space between links */
+        padding: 2px 2px; /* Add padding for spacing */
+        margin: 8px auto; /* Align with other page divs */
+        width: 87vw; /* Match page width */
+        max-width: 640px; /* Consistent with .page */
+ 		flex-wrap: wrap;
+ 		
+    }
+     #bottom {
+        background-color: #2F2023; }
+        
+    #top {         background-color: #2F202333;   background: 
+    linear-gradient(rgba(20, 7, 38, 0.3), rgba(0, 33, 28, 0.3), rgba(6, 39, 29, 0.3)),
+    url(./kc.png); background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;   height: clamp(200px, 40vw, 360px);
+        }
+
+#top img, #bottom img {
+   max-width:18%;
+    height: auto;
+    transition: transform 0.3s ease; margin-bottom:16px; border-radius:10%; border:1px solid #ffffff13;
+}
+
+
+    #top img:hover, #bottom img:hover {
+        
+        box-shadow: 0 0 10px #E31837, 0 0 20px #E31837; }
+
+    /* Forms and Form-like Sections */
+    form, #sign {
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+        align-items: flex-start; /* Left-align form fields */
+        gap: 12px; /* Space between form elements */
+        max-width: 468px; /* Match signature form width */
+        margin: 0 auto; /* Center the form container */
+        padding: 12px 16px; /* Add padding inside the form container */
+        white-space: normal; /* Ensure line breaks work */
+    }
+
+    input, textarea, #signatureCanvas {
+        font-family: 'Noto Sans Mono', monospace;
+        color: #F0F0F0;
+    background-color: #3A2E3E;
+    border: 1px solid #666666;
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+        border-radius: 5px; /* Smooth edges */
+        padding: 8px 10px;
+        width: 100%; /* Full width of the form container */
+        box-sizing: border-box; /* Include padding in width calculation */
+    }
+
+    textarea {
+        height: 128px; /* Match original height */
+    }
+
+    button {
+        font-family: 'Noto Sans Mono', monospace;
+           font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-weight: 600;
+        color: #E0E0E0; /* Light text */
+        background-color: #434847;
+        border: 1px solid #838887;
+        border-radius: 5px;
+        padding: 8px;
+        width: 168px; /* Fixed width for all buttons */
+        cursor: pointer;
+        align-self: center; /* Center buttons horizontally in their containers */
+        transition: transform 0.2s ease, background-color 0.3s ease;
+    }
+button:hover, button:focus-visible {
+    transform: scale(1.1);
+        background-color: #004687;
+    box-shadow: 0 0 10px #004687;
+}
+    /* Checkbox Alignment */
+    label {
+        display: flex;
+        align-items: center; /* Align checkbox and text */
+        gap: 8px; /* Space between checkbox and text */
+        width: 100%;
+    }
+
+    /* Gallery */
+    #gallery {
+       display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 8px;
+            max-width: 100%;
+            padding: 10px;
+    }
+
+    #gallery div {
+        background-color: #3A3A3A; /* Darker gray for gallery items */
+        border: 1px solid #505050; /* Subtle border for separation */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+        text-align: center; /* Center content inside gallery items */
+        padding: 8px;
+        margin:8px;
+        flex: 1 1 calc(33.33% - 16px); /* Dynamic width to fit at least 3 items */
+        max-width: 200px; /* Ensure items don't get too wide */
+        border-radius: 6px; /* Add slight rounding for smoother look */
+    }
+
+    #gallery div:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(227, 24, 55, 0.4), 0 4px 6px rgba(227, 24, 55, 0.2); 
+    }
+
+    #gallery img { 
+        max-width: calc(100% - 10px); /* Prevent crowding by padding inside container */ loading: lazy;
+        height: auto;
+        object-fit: contain; 
+        margin: 0 auto; /* Center the image */
+        border: 1px solid #BDBDBD; /* Subtle border around image */
+        background-color: #F5F5F5; /* Lighter gray for image background */
+        border-radius: 4px; /* Slight rounding for the image itself */
+        padding:2px; /* Padding to separate image from border */
+        box-sizing: border-box; /* Include padding and border in size */
+    }
+
+    /* Name above the image */
+    #gallery div p {
+        color: #E0E0E0; /* Light gray for better contrast */
+        font-size: 0.9rem; /* Slightly smaller text for the name */
+        margin-bottom: 8px; /* Space between name and image */
+        background-color: #444444; /* Slightly darker gray for the text area */
+        padding: 4px 8px; /* Add padding for readability */
+        border-radius: 4px; /* Smooth edges for text background */
+    }
+
+    /* General HR Styling */
+    hr {
+        color: #444444; /* Subtle dark gray */
+        border: none; /* Remove default border */
+        height: 1px; /* Thin line */
+        background-color: #444444; /* Consistent dark gray color */
+        width: 94vw; /* Match page width */
+        max-width: 500px; /* Align with the max-width of .page divs */
+        margin: 16px auto; /* Center HR */
+    }
+    /* HR inside .page */
+    .page hr {
+        width: 100%; /* Full width inside the page */
+        max-width: unset; /* Remove max-width inside page */
+        margin: 12px 0; /* Add vertical spacing */
+    }
+    
+      /* Each letter is an inline-block to allow individual transforms */
+    .letters {
+      display: inline-block;
+      transition: transform 0.3s ease;
+      /* The custom property --rotation will be set per letter */
+      transform: rotate(var(--rotation, 0deg));
+    }
+        /* Style for the h1 with a gradient text effect */
+  /* H1 Styling & Animation Fix */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: 0.3rem;
+            text-align: center;
+            vertical-align:bottom;
+            padding: 8px;
+            background: linear-gradient(90deg, #ff7e5f, #feb4fb, #3c3c3c);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 6s infinite linear alternate;
+        }
+        
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+   h2 {
+            font-size: clamp(1.8rem, 2vw, 2.2rem);
+            font-weight: 600;
+            letter-spacing: 0.04rem;
+            margin-bottom: 10px;
+        }
+        h3 {
+            font-size: clamp(1.3rem, 1.8vw, 1.6rem);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        h4 {
+            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+            font-weight: 400;
+            margin-bottom: 6px;
+        }
+        p {
+            font-size: clamp(1rem, 1.2vw, 1.1rem);
+        }
+
+        /* Call-to-Action Enhancements */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        #submitBtn {
+            animation: pulse 1.8s infinite ease-in-out;
+        }
+  /* Confirmation Message Fade-In */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+
 
 
 </head>
 <body>
   <div class="page" id="top">
-       <div class="imconn"><a href="#top">
-            <img src="./bt.png" alt="xyz.kcmo.xyz">
+        <a href="#top">
+            <img src="./par.png" alt="kcmo.xyz">
         </a>
-      </div>
+        <a href="#letter">Pt.I</a>
+        <a href="#bgde">Pt.II</a>
+        <a href="#signs">Signatures</a>
+        <a href="#contact">Contact</a>
         <h1 id="mechanical-press">The&nbsp;Last&nbsp;Letter</h1>
-        
-    </div><p>(A&nbsp;Kansas&nbsp;City&nbsp;Manifesto)</p><div class="page" id="topnav">
-<a href="#letter">Pt.I</a>
-<a href="#bgde">Pt.II</a>
-<a href="#signs">Signatures</a>
-<a href="#contact">Contact</a></div>
+
+    </div>
+<p>(A&nbsp;Kansas&nbsp;City&nbsp;Manifesto)</p>
+ 
     <div class="page" id="letter">
 
         <section id="part1">
@@ -174,7 +451,7 @@ To contact the author of this page please use this contact form, or email: </sma
 <br><hr><br>
     <div class="page" id="bottom">
         <a href="#top">
-            <img src="./bt.png" alt="xyz.kcmo.xyz">
+            <img src="./par.png" alt="kcmo.xyz">
         </a>
         <a href="#letter">Pt.I</a>
         <a href="#bgde">Pt.II</a>
@@ -223,49 +500,50 @@ To contact the author of this page please use this contact form, or email: </sma
     }
     if (signaturePad.isEmpty()) {
       alert("Please provide a signature first.");
-    return;
-  }
-
-
-  // Grab typedName from the element, not just a string
-  const typedName = nameInput.value || "Anonymous";
-  const signatureDataUrl = signaturePad.toDataURL("image/png");
-
-  try {
-    // POST to Worker
-    const response = await fetch("https://luge-worker.jojo-829.workers.dev/api/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ typedName, signatureDataUrl }),
-    });
-
-    if (!response.ok) {
-      throw new Error("Submission failed");
+      return;
+        setTimeout(() => {
+        const message = document.createElement("p");
+        message.textContent = "Thank you for standing with us!";
+        message.classList.add("fade-in");
+        document.getElementById("sign").appendChild(message);
+    }, 500);
+});
     }
 
-    // Parse response
-    const { count, submissions } = await response.json();
-    updateGallery(count, submissions);
+    // Grab typedName from the element, not just a string
+    const typedName = nameInput.value || "Anonymous";
+    const signatureDataUrl = signaturePad.toDataURL("image/png");
 
-    // Clear the form after successful submission
-    nameInput.value = "";
-    consentBox.checked = false;
-    signaturePad.clear();
+    try {
+      // POST to Worker
+      const response = await fetch("https://luge-worker.jojo-829.workers.dev/api/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ typedName, signatureDataUrl }),
+      });
 
-    // Mark localStorage so the user cannot submit again from this browser
-    localStorage.setItem("hasSubmitted", "true");
-    disableForm();
-  } catch (error) {
-    alert(`Error: ${error.message}`);
-    console.error(error);
-  }
-  setTimeout(() => {
-    const message = document.createElement("p");
-    message.textContent = "Thank you for standing with us!";
-    message.classList.add("fade-in");
-    document.getElementById("sign").appendChild(message);
-  }, 500);
-});
+      if (!response.ok) {
+        throw new Error("Submission failed");
+      }
+
+      // Parse response
+      const { count, submissions } = await response.json();
+      updateGallery(count, submissions);
+
+      // Clear the form after successful submission
+      nameInput.value = "";
+      consentBox.checked = false;
+      signaturePad.clear();
+
+      // Mark localStorage so the user cannot submit again from this browser
+      localStorage.setItem("hasSubmitted", "true");
+      disableForm();
+    } catch (error) {
+      alert(`Error: ${error.message}`);
+      console.error(error);
+    }
+  });
+
   // 4) The function to update the gallery
   function updateGallery(count, submissions) {
     // Update the total count in the heading
@@ -418,7 +696,7 @@ gsap.utils.toArray(".page").forEach((section) => {
 const tl = gsap.timeline({ repeat: -1, yoyo: true });
 
 // 1. Simple translation and rotation with a slow, smooth motion
-tl.to('#top .imconn', {
+tl.to('#top img', {
   duration: 14,        // Slow movement over 14 seconds
   x: 80,               // Move 80px to the right
   y: 20,               // Move 20px down
@@ -428,7 +706,7 @@ tl.to('#top .imconn', {
 
 // 2. Follow a curved path with auto-rotation (requires MotionPathPlugin)
 // This gives a more fluid, organic path movement
-.to('#top .imconn', {
+.to('#top img', {
   duration: 14,
   motionPath: {
     path: [
@@ -445,7 +723,7 @@ tl.to('#top .imconn', {
 
 // 3. Perform a “wiggle” using keyframes (multiple rapid changes in position and rotation)
 // This creates a playful, cartoon-like jitter effect.
-.to('#top .imconn', {
+.to('#top img', {
   duration: 14,
   keyframes: [
     { x: 90, y: 25, rotation: 15, duration: 3 },
@@ -458,7 +736,7 @@ tl.to('#top .imconn', {
 
 // 4. A final movement returning the image closer to its starting state,
 // but with a twist—a slow rotation change and a slight scale effect.
-.to('#top .imconn', {
+.to('#top img', {
   duration: 14,
   x: 0,
   y: 0,
