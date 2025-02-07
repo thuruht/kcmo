@@ -1,11 +1,10 @@
 
     /* General link styles */
     a {
-        font-weight: 600;
+        font-weight: 500;
         text-decoration: none;
         color: #9AA0A3; /* Slightly brighter for readability */
-    font-size: clamp(1rem, 1.3vw, 1.1rem);
-        font-stretch: expanded;
+    font-size: clamp(0.87rem, 1.1vw, 1rem);
         letter-spacing: 0.05em; /* Slight spacing for readability */
         transition: color 0.3s ease, text-shadow 0.3s ease; text-shadow: 1px 1px 5px #004687;
     }
@@ -23,10 +22,8 @@
          font-weight:400;
          line-height:1.5; letter-spacing:0.022rem;
          margin: 0; /* Remove margin to prevent unwanted shifting */
-         background: linear-gradient(187deg,#1b1a11, #232328,#031308, #1f1311,#1b1a11);
-         background-size: cover; /* Ensures it covers the whole viewport */
-         background-attachment: fixed; /* Keeps it in place while scrolling */
-         background-position: center;
+         background: linear-gradient(187deg, #131319,#031308, #1f1311,#1b1a11);
+         background-size: cover; 
         color: #f5f5f5;
         display: flex;
         flex-direction: column;
@@ -161,10 +158,10 @@ button:hover, button:focus-visible {
     /* Gallery */
     #gallery {
        display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
             gap: 4px;
             max-width: 100%;
-            padding: 10px;
+            padding: 8px;
     }
 
     #gallery div {
@@ -173,9 +170,9 @@ button:hover, button:focus-visible {
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
         text-align: center; /* Center content inside gallery items */
         padding: 8px;
-        margin:8px;
-        flex: 1 1 calc(33.33% - 16px); /* Dynamic width to fit at least 3 items */
-        max-width: 150px; /* Ensure items don't get too wide */
+        margin:0 auto;
+      /*  flex: 1 1 calc(50% - 16px); /* Dynamic width to fit at least 3 items */
+        max-width: 248px; /* Ensure items don't get too wide */
         border-radius: 6px; /* Add slight rounding for smoother look */
     }
 
@@ -228,22 +225,28 @@ button:hover, button:focus-visible {
       transition: transform 0.3s ease;
       /* The custom property --rotation will be set per letter */
       transform: rotate(var(--rotation, 0deg));
+    background: linear-gradient(90deg, #ff7e5f, #feb4fb, #3c3c3c);
+    background-size: 300% 100%;
+    background-clip: text;
+    color: transparent;
+    mask-image: linear-gradient(90deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
     }
         /* Style for the h1 with a gradient text effect */
   /* H1 Styling & Animation Fix */
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(1.333rem, 4vw, 3rem);
             letter-spacing: 0.3rem;
             text-align: center;
             vertical-align:bottom;
             padding: 8px;
-            background: linear-gradient(90deg, #ff7e5f, #feb4fb, #3c3c3c);
+            
+          /*  background: linear-gradient(90deg, #ff7e5f, #feb4fb, #3c3c3c);
             background-size: 400% 400%;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradientShift 6s infinite linear alternate;
+            animation: gradientShift 6s infinite linear alternate;*/
         }
         
         
