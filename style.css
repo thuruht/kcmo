@@ -1,10 +1,10 @@
-
+ 
     /* General link styles */
     a {
         font-weight: 500;
         text-decoration: none;
         color: #9AA0A3; /* Slightly brighter for readability */
-    font-size: clamp(0.87rem, 1.1vw, 1rem);
+    font-size: clamp(0.87rem, 0.9vw, 1rem);
         letter-spacing: 0.05em; /* Slight spacing for readability */
         transition: color 0.3s ease, text-shadow 0.3s ease; text-shadow: 1px 1px 5px #004687;
     }
@@ -22,8 +22,8 @@
          font-weight:400;
          line-height:1.5; letter-spacing:0.022rem;
          margin: 0; /* Remove margin to prevent unwanted shifting */
-         background: linear-gradient(187deg, #131319,#031308, #1f1311,#1b1a11);
-         background-size: cover; 
+         background: linear-gradient(187deg, #131319, #031308, #1f1311, #1b1a11, #131319, #031308, #1f1311, #1b1a11, #131319, #031308, #1f1311, #1b1a11, #131319, #031308, #1f1311, #1b1a11, #131319, #031308, #1f1311, #1b1a11, #131319, #031308, #1f1311, #1b1a11);
+      
         color: #f5f5f5;
         display: flex;
         flex-direction: column;
@@ -34,7 +34,7 @@
 
     /* Page container */
     .page {
-        background-color: #2F2023; 
+        background-color: #2F1923; 
         color: #E0E0E0; 
         border: 1px solid #505050; 
         border-radius: 12px;
@@ -117,7 +117,7 @@ width:64px;
         color: #F0F0F0;
     background-color: #3A2E3E;
     border: 1px solid #666666;
-    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+    font-size: clamp(0.8rem, 1vw, 1.2rem);
         border-radius: 5px; /* Smooth edges */
         padding: 8px 10px;
         width: 100%; /* Full width of the form container */
@@ -156,23 +156,27 @@ button:hover, button:focus-visible {
     }
 
     /* Gallery */
-    #gallery {
+    #gallery { background-color: #2A1A3B   ; /* Darker gray for gallery items */
+   border: 1px solid #00000001; border-radius: 6px;
+   
        display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
-            gap: 4px;
+            grid-template-columns: repeat(auto-fit, minmax(108px, 1fr));
+            gap: 3px;
             max-width: 100%;
-            padding: 8px;
+            padding: 6px;
+             text-align: center; /* Center content inside gallery items */
+        margin:0 auto;
     }
 
     #gallery div {
         background-color: #2A1A3B   ; /* Darker gray for gallery items */
-        border: 1px solid #505050; /* Subtle border for separation */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+        border: 1px solid #0000000c; /* Subtle border for separation */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
         text-align: center; /* Center content inside gallery items */
-        padding: 8px;
+        padding: 2px;
         margin:0 auto;
       /*  flex: 1 1 calc(50% - 16px); /* Dynamic width to fit at least 3 items */
-        max-width: 248px; /* Ensure items don't get too wide */
+        max-width: 108px; /* Ensure items don't get too wide */
         border-radius: 6px; /* Add slight rounding for smoother look */
     }
 
@@ -185,9 +189,9 @@ button:hover, button:focus-visible {
         height: auto;
         object-fit: contain; 
         margin: 0 auto; /* Center the image */
-        border: 1px solid #BDBDBD; /* Subtle border around image */
-        background-color: #F5F5F5; /* Lighter gray for image background */
-        border-radius: 4px; /* Slight rounding for the image itself */
+        border: 1px solid #0000000c; /* Subtle border around image */
+        background-color: #2A1A3B; /* Lighter gray for image background */
+        border-radius: 6px; /* Slight rounding for the image itself */
         padding:2px; /* Padding to separate image from border */
         box-sizing: border-box; /* Include padding and border in size */
     }
@@ -195,11 +199,11 @@ button:hover, button:focus-visible {
     /* Name above the image */
     #gallery div p {
         color: #E0E0E0; /* Light gray for better contrast */
-        font-size: 0.8rem; /* Slightly smaller text for the name */
-        margin-bottom: 8px; /* Space between name and image */
-        background-color: #444444; /* Slightly darker gray for the text area */
-        padding: 4px 8px; /* Add padding for readability */
-        border-radius: 4px; /* Smooth edges for text background */
+        font-size: 0.75rem; /* Slightly smaller text for the name */
+        margin-bottom: 2px; /* Space between name and image */
+        background-color: #2A1A3B; /* Slightly darker gray for the text area */
+        padding: 2px 4px; /* Add padding for readability */
+        border-radius: 6px; /* Smooth edges for text background */
     }
 
     /* General HR Styling */
@@ -209,29 +213,30 @@ button:hover, button:focus-visible {
         height: 1px; /* Thin line */
         background-color: #444444; /* Consistent dark gray color */
         width: 94vw; /* Match page width */
-        max-width: 500px; /* Align with the max-width of .page divs */
+        max-width: 600px; /* Align with the max-width of .page divs */
         margin: 6px auto; /* Center HR */
     }
     /* HR inside .page */
     .page hr {
         width: 100%; /* Full width inside the page */
         max-width: unset; /* Remove max-width inside page */
-        margin: 6px 0; /* Add vertical spacing */
+        margin: 6px auto; /* Add vertical spacing */
     }
     
       /* Each letter is an inline-block to allow individual transforms */
     .letters {
-      display: inline-block;
-      transition: transform 0.3s ease;
-      /* The custom property --rotation will be set per letter */
-      transform: rotate(var(--rotation, 0deg));
+    display: inline-block;
     background: linear-gradient(90deg, #ff7e5f, #feb4fb, #3c3c3c);
     background-size: 300% 100%;
     background-clip: text;
     color: transparent;
-    mask-image: linear-gradient(90deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
-    }
-        /* Style for the h1 with a gradient text effect */
+    position: relative;
+    -webkit-background-clip: text;
+    text-fill-color: transparent;
+    -webkit-text-fill-color: transparent; /* Ensures gradient applies */
+    
+}
+
   /* H1 Styling & Animation Fix */
         h1 {
             font-family: 'Playfair Display', serif;
@@ -240,7 +245,7 @@ button:hover, button:focus-visible {
             text-align: center;
             vertical-align:bottom;
             padding: 8px;
-            
+              
           /*  background: linear-gradient(90deg, #ff7e5f, #feb4fb, #3c3c3c);
             background-size: 400% 400%;
             -webkit-background-clip: text;
@@ -248,7 +253,7 @@ button:hover, button:focus-visible {
             -webkit-text-fill-color: transparent;
             animation: gradientShift 6s infinite linear alternate;*/
         }
-        
+
         
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }

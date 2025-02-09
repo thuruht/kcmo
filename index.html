@@ -18,9 +18,9 @@
 </head>
 <body>
   <div class="page" id="top">    <div class="imconn"><a href="#top">
-            <img src="./bt.png" alt="xyz.kcmo.xyz">
+            <img src="./par.png" alt="xyz.kcmo.xyz">
         </a>
-      </div><h1 id="mechanical-press">The&nbsp;Last&nbsp;Letter</h1>
+      </div><h1 id="mechanical-press" data-text="The Last Letter"">The&nbsp;Last&nbsp;Letter</h1>
    
       
         
@@ -108,27 +108,21 @@
             <div class="page" id="signs">
    
     
-            <section id="sign"><h3>Add your Signature or Mark</h3>
+            <section id="sign"><h3>Draw a Signature or Something:</h3>
            <!-- Signature area -->
-    <canvas id="signatureCanvas" width="468" height="128"></canvas><br>
-     <button id="clearBtn">Reset (Erase)</button>
-    <br>
-<br>
-    <!-- Typed name -->
-    <label>
-      <small>Name or Other Identifier:</small><br>
-      <input type="text" id="typedName" placeholder="Type your name">
+    <canvas id="signatureCanvas" width="468" height="128"></canvas><br>   <label>
+      <input id="consent" type="checkbox" required> <small>I stand with my community. I demand change. I sign my name in solidarity.</small>
+    </label>    <label>
+      <small>Type Name or Whatever:<br>
+      <input type="text" id="typedName" placeholder="type here">
     </label>
-    <br><br>
+     <button id="clearBtn">Erase</button>  <button id="submitBtn">Submit</button>
+
+
+    <!-- Typed name -->
 
     <!-- Mandatory checkbox -->
-    <label>
-      <input id="consent" type="checkbox" required> <small>I stand with my community. I demand change. I sign my name in solidarity.</small>
-    </label>
-    <br><br>
-
-   
-    <button id="submitBtn">Submit</button>
+ 
 
         </section>
 
@@ -150,16 +144,16 @@
 
 <form id="contact-form">
     <label>
-     <small> Name:</small><br>
+      Name:<br>
       <input type="text" name="name" required>
     </label><br>
     <label>
-    <small>  Email:</small><br>
+      Email:<br>
       <input type="email" name="email" required>
     </label>
     <br>
     <label>
-      <small>Message:</small><br>
+      Message:<br>
       <textarea name="message" required></textarea>
     </label><br>
     <button type="submit">Send</button>
@@ -174,7 +168,7 @@ To contact the author of this page please use this contact form, or email: </sma
 <br><hr><br>
     <div class="page" id="bottom">
         <a href="#top">
-            <img src="./bt.png" alt="xyz.kcmo.xyz">
+            <img src="./par.png" alt="xyz.kcmo.xyz">
         </a>
         <a href="#letter">Pt.I</a>
         <a href="#bgde">Pt.II</a>
@@ -278,15 +272,15 @@ To contact the author of this page please use this contact form, or email: </sma
     // For each submission, create a "card"
     submissions.forEach((sub) => {
       const div = document.createElement("div");
-      div.style.border = "1px solid #ccc";
-      div.style.padding = "10px";
-      div.style.width = "200px";         // optional: fixed width for a grid look
+      div.style.border = "1px solid #0000000c";
+  //    div.style.padding = "10px";
+    //  div.style.width = "200px";         // optional: fixed width for a grid look
       div.style.boxSizing = "border-box";
       // margin or gap can be controlled in the flex container or here
       div.innerHTML = `
-        <p>Name: ${sub.typedName}</p>
+        <p> ${sub.typedName} </p>
         <img src="https://luge-worker.jojo-829.workers.dev/api/file?key=${sub.signatureKey}" 
-             style="max-width: 100%;" />
+             style="max-width: 100%;" alt="${sub.signatureKey}">
       `;
       gallery.appendChild(div);
     });
@@ -489,7 +483,7 @@ tl.to('#top .imconn', {
       
       // If the character isn't a space, give it a random rotation between -3deg and 3deg
       if (text[i] !== ' ') {
-        const angle = (Math.random() * 9 - 3).toFixed(1); // Random value between -3 and 3
+        const angle = (Math.random() * 12 - 3).toFixed(1); // Random value between -3 and 3
         span.style.setProperty('--rotation', angle + 'deg');
       }
       
