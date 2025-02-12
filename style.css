@@ -36,7 +36,7 @@
     .page {
         background-color: #2F1923; 
         color: #E0E0E0; 
-        border: 1px solid #505050; 
+        border: 1px solid #4f4f4f3f; 
         border-radius: 12px;
         box-shadow: 1px -1px 0 #4646396f, -1px 1px 0 #4639466f; 
         padding: 16px;
@@ -246,7 +246,7 @@ button:hover, button:focus-visible {
             vertical-align:bottom;
             padding: 8px;
               
-          /*  background: linear-gradient(90deg, #ff7e5f, #feb4fb, #3c3c3c);
+          /*  background: linear-gradient(90deg, #ff7e5f, #feb4fb, #3c3c4c);
             background-size: 400% 400%;
             -webkit-background-clip: text;
             background-clip: text;
